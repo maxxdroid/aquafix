@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import './signup/create_account.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({super.key});
@@ -162,6 +163,19 @@ class _SignInState extends State<SignIn> {
                       label: const Text('Sign in with Google'),
                       ),
                   ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text("Don't Have an account?"),
+                      TextButton(
+                        onPressed: () {
+                          Route route = MaterialPageRoute(builder: (_) =>  const CreateAccount());
+                          Navigator.push(context, route);
+                        }, 
+                        child: const Text("Resgister")
+                        )
+                    ],
+                  )
               ],
             ))),
       ),

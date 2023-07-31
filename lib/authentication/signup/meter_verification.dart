@@ -90,9 +90,12 @@ class _MeterVerificationState extends State<MeterVerification> {
                     onTap: () {
                       selectImage(context);
                     },
-                    child: CircleAvatar(
-                      radius: width * 0.45,
-                      backgroundImage: FileImage(_pic),
+                    // child: CircleAvatar(
+                    //   radius: width * 0.5,
+                    //   backgroundImage: FileImage(_pic),
+                    // ),
+                    child: Container(
+                      child: Image.file(_pic),
                     ),
                    )
                   :
@@ -105,6 +108,18 @@ class _MeterVerificationState extends State<MeterVerification> {
                   )
                ),
           ],
+        ),
+      ),
+      floatingActionButton: ElevatedButton(
+        onPressed: () {
+          Route route = MaterialPageRoute(builder: (_) => const MeterVerification());
+          Navigator.push(context, route);
+        },
+        style: ElevatedButton.styleFrom(
+            foregroundColor: Colors.purple, backgroundColor: Colors.lightBlue),
+        child: const Text(
+          "Sign Up",
+          style: TextStyle(color: Colors.white, fontSize: 16),
         ),
       ),
     );
