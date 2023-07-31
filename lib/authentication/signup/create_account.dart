@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import '../login.dart';
+// import '../login.dart';
+import '../signup/meter_verification.dart';
 
 class CreateAccount extends StatefulWidget {
   const CreateAccount({super.key});
@@ -35,13 +36,14 @@ class _CreateAccountState extends State<CreateAccount> {
                       child: Expanded(
                           child: Text(
                         "Enter your meter number and Password",
-                        style:
-                            TextStyle(fontSize: 22, fontWeight: FontWeight.w500),
+                        style: TextStyle(
+                            fontSize: 22, fontWeight: FontWeight.w500),
                       )),
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 20, left: 30, right: 30, bottom: 30),
+                    padding: const EdgeInsets.only(
+                        top: 20, left: 30, right: 30, bottom: 30),
                     child: TextFormField(
                       autofocus: true,
                       validator: (val) {
@@ -70,66 +72,66 @@ class _CreateAccountState extends State<CreateAccount> {
                     ),
                   ),
                   Padding(
-                        padding: const EdgeInsets.only(top: 10.0, left: 30, right: 30),
-                        child: TextFormField(
-                          autofocus: true,
-                          obscureText: _obscure,
-                          validator: (val) {
-                            if (_passwordController.text.isEmpty ) {
-                              return "Field cannot be empty";
-                            }
-                            else if (_passwordController.text.length < 8) {
-                              return "Password cannot be less that 8 characters";
-                            }
-                            else {
-                              return null;
-                            }
+                    padding:
+                        const EdgeInsets.only(top: 10.0, left: 30, right: 30),
+                    child: TextFormField(
+                      autofocus: true,
+                      obscureText: _obscure,
+                      validator: (val) {
+                        if (_passwordController.text.isEmpty) {
+                          return "Field cannot be empty";
+                        } else if (_passwordController.text.length < 8) {
+                          return "Password cannot be less that 8 characters";
+                        } else {
+                          return null;
+                        }
+                      },
+                      controller: _passwordController,
+                      decoration: InputDecoration(
+                        suffixIcon: IconButton(
+                          icon: _obscure
+                              ? const Icon(Icons.visibility_off)
+                              : const Icon(Icons.visibility),
+                          onPressed: () {
+                            setState(() {
+                              if (_obscure) {
+                                _obscure = false;
+                              } else {
+                                _obscure = true;
+                              }
+                            });
                           },
-                          controller: _passwordController,
-                          decoration: InputDecoration(
-                            suffixIcon: IconButton(
-                              icon: _obscure ? const Icon(Icons.visibility_off): const Icon(Icons.visibility), 
-                              onPressed: (){
-                                setState(() {
-                                  if (_obscure) {
-                                    _obscure = false;
-                                  }
-                                  else{
-                                    _obscure = true;
-                                  }
-                                });
-                              },),
-                            labelStyle: const TextStyle(
-                              fontSize: 14,
-                            ),
-                            labelText: "Password",
-                            
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                              borderSide: const BorderSide(color: Colors.grey, width: 1.5),
-                            ),
-                            
-                          ),
+                        ),
+                        labelStyle: const TextStyle(
+                          fontSize: 14,
+                        ),
+                        labelText: "Password",
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          borderSide:
+                              const BorderSide(color: Colors.grey, width: 1.5),
                         ),
                       ),
-                    //   Container(
-                    //     alignment: Alignment.bottomLeft,
-                    //   padding: const EdgeInsets.only(top: 5.0, left: 15, right: 15, bottom: 20),
-                    //   height: height * 0.1,
-                    //   width: width * 0.4,
-                    //   child: ElevatedButton(
-                    //     onPressed: (){
-                    //       // final FormState? form = _formKey.currentState;
-                    //       // if (form!.validate()){
-                    //       //   AuthMethods().signInWithEmailandPAssword(_emailController.toString().trim(), _passwordController.text.trim(), context);
-                    //       // }
-                    //     },
-                    //     style: ElevatedButton.styleFrom(
-                    //       foregroundColor: Colors.purple, backgroundColor: Colors.lightBlue
-                    //     ), 
-                    //     child: const Text("Next", style: TextStyle(color: Colors.white, fontSize: 16),),
-                    //     ),
-                    // ),
+                    ),
+                  ),
+                  //   Container(
+                  //     alignment: Alignment.bottomLeft,
+                  //   padding: const EdgeInsets.only(top: 5.0, left: 15, right: 15, bottom: 20),
+                  //   height: height * 0.1,
+                  //   width: width * 0.4,
+                  //   child: ElevatedButton(
+                  //     onPressed: (){
+                  //       // final FormState? form = _formKey.currentState;
+                  //       // if (form!.validate()){
+                  //       //   AuthMethods().signInWithEmailandPAssword(_emailController.toString().trim(), _passwordController.text.trim(), context);
+                  //       // }
+                  //     },
+                  //     style: ElevatedButton.styleFrom(
+                  //       foregroundColor: Colors.purple, backgroundColor: Colors.lightBlue
+                  //     ),
+                  //     child: const Text("Next", style: TextStyle(color: Colors.white, fontSize: 16),),
+                  //     ),
+                  // ),
                 ],
               ),
             ),
@@ -137,15 +139,17 @@ class _CreateAccountState extends State<CreateAccount> {
         ),
       ),
       floatingActionButton: ElevatedButton(
-                        onPressed: (){
-                          Route route = MaterialPageRoute(builder: (_) =>  const SignIn());
-                          Navigator.push(context, route);
-                        },
-                        style: ElevatedButton.styleFrom(
-                          foregroundColor: Colors.purple, backgroundColor: Colors.lightBlue
-                        ), 
-                        child: const Text("Next", style: TextStyle(color: Colors.white, fontSize: 16),),
-                        ),  
+        onPressed: () {
+          Route route = MaterialPageRoute(builder: (_) => const MeterVerification());
+          Navigator.push(context, route);
+        },
+        style: ElevatedButton.styleFrom(
+            foregroundColor: Colors.purple, backgroundColor: Colors.lightBlue),
+        child: const Text(
+          "Next",
+          style: TextStyle(color: Colors.white, fontSize: 16),
+        ),
+      ),
     );
   }
 }
