@@ -19,7 +19,7 @@ class _CreateAccountState extends State<CreateAccount> {
     // var width = MediaQuery.of(context).size.width;
     return Scaffold(
       body: SingleChildScrollView(
-        child: Container(
+        child: SizedBox(
           height: height,
           child: Form(
             key: _formKey,

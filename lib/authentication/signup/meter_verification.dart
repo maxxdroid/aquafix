@@ -38,7 +38,7 @@ class _MeterVerificationState extends State<MeterVerification> {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15)
           ),
-          title: const Text("Upload a Profile Picture"),
+          title: const Text("Upload a Picture of a receipt"),
           children: [
             SimpleDialogOption(
               child: const Text("Select from Gallery"),
