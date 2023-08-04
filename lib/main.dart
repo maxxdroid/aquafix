@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import './authentication/login.dart';
+import 'package:firebase_core/firebase_core.dart';
 // import './authentication/signup/create_account.dart';
 
-void main() {
+Future <void> main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 

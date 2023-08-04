@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "934756267114",
+    "project_id": "aquafix-d0e2e",
+    "storage_bucket": "aquafix-d0e2e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:934756267114:android:568572ba06f39f25ef8613",
+        "android_client_info": {
+          "package_name": "com.example.aquafix"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "934756267114-7ap0b3i222e28n9gncs2edhcbp3mkpnp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC1AFSE2ul0ZvASAHEfY67LCoBgw_JO7j4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "934756267114-7ap0b3i222e28n9gncs2edhcbp3mkpnp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
