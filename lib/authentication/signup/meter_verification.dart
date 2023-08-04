@@ -93,9 +93,7 @@ class _MeterVerificationState extends State<MeterVerification> {
                     //   radius: width * 0.5,
                     //   backgroundImage: FileImage(_pic),
                     // ),
-                    child: Container(
-                      child: Image.file(_pic),
-                    ),
+                    child: Image.file(_pic),
                    )
                   :
                   IconButton(
