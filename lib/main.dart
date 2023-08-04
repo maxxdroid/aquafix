@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import './authentication/login.dart';
 import 'package:firebase_core/firebase_core.dart';
-// import './authentication/signup/create_account.dart';
+import './screens/home.dart';
+import './authentication/signup/create_account.dart';
+import './authentication/signup/meter_verification.dart';
 
 Future <void> main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,6 +19,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      routes: {
+        "home" : (context) => const HomePage(),
+        "login" : (context) => const SignIn(),
+        "signup" : (context) => const CreateAccount(),
+        "meter_verification" : (context) => const MeterVerification(),
+      },
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple.shade400),
         useMaterial3: true,

@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -112,8 +111,7 @@ class _MeterVerificationState extends State<MeterVerification> {
       ),
       floatingActionButton: ElevatedButton(
         onPressed: () {
-          Route route = MaterialPageRoute(builder: (_) => const MeterVerification());
-          Navigator.push(context, route);
+          Navigator.pushNamed(context, "home");
         },
         style: ElevatedButton.styleFrom(
             foregroundColor: Colors.purple, backgroundColor: Colors.lightBlue),

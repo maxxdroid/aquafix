@@ -169,8 +169,7 @@ class _SignInState extends State<SignIn> {
                       const Text("Don't Have an account?"),
                       TextButton(
                         onPressed: () {
-                          Route route = MaterialPageRoute(builder: (_) =>  const CreateAccount());
-                          Navigator.push(context, route);
+                          Navigator.pushNamed(context, "signup");
                         }, 
                         child: const Text("Resgister")
                         )

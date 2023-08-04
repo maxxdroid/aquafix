@@ -196,8 +196,7 @@ class _CreateAccountState extends State<CreateAccount> {
       ),
       floatingActionButton: ElevatedButton(
         onPressed: () {
-          Route route = MaterialPageRoute(builder: (_) => const MeterVerification());
-          Navigator.push(context, route);
+          Navigator.pushNamed(context, "meter_verification");
         },
         style: ElevatedButton.styleFrom(
             foregroundColor: Colors.purple, backgroundColor: Colors.lightBlue),
