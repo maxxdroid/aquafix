@@ -72,6 +72,79 @@ class _CreateAccountState extends State<CreateAccount> {
                     ),
                   ),
                   Padding(
+                    padding: const EdgeInsets.only(
+                        top: 20, left: 30, right: 30, bottom: 30),
+                    child: TextFormField(
+                      autofocus: true,
+                      validator: (val) {
+                        if (_usernameController.text.isEmpty) {
+                          return "Field cannot be empty";
+                        }
+                        return null;
+                      },
+                      controller: _usernameController,
+                      decoration: InputDecoration(
+                        // prefixText: '@',
+                        labelStyle: const TextStyle(
+                          fontSize: 14,
+                        ),
+                        labelText: "Name on meter",
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          borderSide:
+                              const BorderSide(color: Colors.grey, width: 1.5),
+                        ),
+                        errorBorder: OutlineInputBorder(
+                          borderSide: const BorderSide(color: Colors.red),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(top: 10.0, left: 30, right: 30),
+                    child: TextFormField(
+                      autofocus: true,
+                      obscureText: _obscure,
+                      validator: (val) {
+                        if (_passwordController.text.isEmpty) {
+                          return "Field cannot be empty";
+                        } else if (_passwordController.text.length < 8) {
+                          return "Password cannot be less that 8 characters";
+                        } else {
+                          return null;
+                        }
+                      },
+                      controller: _passwordController,
+                      decoration: InputDecoration(
+                        suffixIcon: IconButton(
+                          icon: _obscure
+                              ? const Icon(Icons.visibility_off)
+                              : const Icon(Icons.visibility),
+                          onPressed: () {
+                            setState(() {
+                              if (_obscure) {
+                                _obscure = false;
+                              } else {
+                                _obscure = true;
+                              }
+                            });
+                          },
+                        ),
+                        labelStyle: const TextStyle(
+                          fontSize: 14,
+                        ),
+                        labelText: "Confirm Password",
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          borderSide:
+                              const BorderSide(color: Colors.grey, width: 1.5),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Padding(
                     padding:
                         const EdgeInsets.only(top: 10.0, left: 30, right: 30),
                     child: TextFormField(
@@ -114,24 +187,7 @@ class _CreateAccountState extends State<CreateAccount> {
                       ),
                     ),
                   ),
-                  //   Container(
-                  //     alignment: Alignment.bottomLeft,
-                  //   padding: const EdgeInsets.only(top: 5.0, left: 15, right: 15, bottom: 20),
-                  //   height: height * 0.1,
-                  //   width: width * 0.4,
-                  //   child: ElevatedButton(
-                  //     onPressed: (){
-                  //       // final FormState? form = _formKey.currentState;
-                  //       // if (form!.validate()){
-                  //       //   AuthMethods().signInWithEmailandPAssword(_emailController.toString().trim(), _passwordController.text.trim(), context);
-                  //       // }
-                  //     },
-                  //     style: ElevatedButton.styleFrom(
-                  //       foregroundColor: Colors.purple, backgroundColor: Colors.lightBlue
-                  //     ),
-                  //     child: const Text("Next", style: TextStyle(color: Colors.white, fontSize: 16),),
-                  //     ),
-                  // ),
+                  
                 ],
               ),
             ),
