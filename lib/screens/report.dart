@@ -92,16 +92,12 @@ class _ReportState extends State<Report> {
           Container(
             height: height * 0.45,
             // width: width * 0.7,
-            padding: EdgeInsets.only(top: 30),
+            padding: const EdgeInsets.only(top: 30),
             child: imageSelected ? 
                    InkWell(
                     onTap: () {
                       selectImage(context);
                     },
-                    // child: CircleAvatar(
-                    //   radius: width * 0.5,
-                    //   backgroundImage: FileImage(_pic),
-                    // ),
                     child: Image.file(_pic),
                    )
                   :IconButton(
@@ -144,9 +140,26 @@ class _ReportState extends State<Report> {
                   ),
                 ),
                 maxLines: 7,
-              )),
+              )
+          ),
+          const SizedBox(height: 20,),
+          Container(
+                    padding: const EdgeInsets.only(top: 5.0, left: 15, right: 15, bottom: 20),
+                    height: height * 0.1,
+                    width: 200,
+                    child: ElevatedButton(
+                      onPressed: (){
+                        Navigator.pop(context);
+                      },
+                      style: ElevatedButton.styleFrom(
+                        foregroundColor: Colors.purple, backgroundColor: Colors.lightBlue
+                      ), 
+                      child: const Text("Submit Report", style: TextStyle(color: Colors.white, fontSize: 16),),
+                      ),
+                  ),
         ],
-      )),
+      )
+    ),
     );
   }
 }
