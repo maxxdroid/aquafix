@@ -29,6 +29,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple.shade400),
         useMaterial3: true,
+        fontFamily: 'Roboto',
       ),
       home: const SignIn(),
       debugShowCheckedModeBanner: false,
