@@ -24,6 +24,7 @@ class MyApp extends StatelessWidget {
         "login" : (context) => const SignIn(),
         "signup" : (context) => const CreateAccount(),
         "meter_verification" : (context) => const MeterVerification(),
+        "signIn" : (context) => const SignIn(),
       },
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple.shade400),
@@ -34,3 +35,4 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
