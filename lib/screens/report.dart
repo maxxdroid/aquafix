@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 class Report extends StatefulWidget {
-  const Report({super.key,required this.title});
+  const Report({super.key, required this.title});
 
   final String title;
 
@@ -10,15 +13,64 @@ class Report extends StatefulWidget {
 }
 
 class _ReportState extends State<Report> {
-
   final TextEditingController _name = TextEditingController();
   final TextEditingController _location = TextEditingController();
   final TextEditingController _details = TextEditingController();
 
+
+  bool imageSelected = false;
+  late File _pic;
+  final picker = ImagePicker();
+
+  Future _selectFromGallery() async{
+    var tempImage = await picker.pickImage(source: ImageSource.gallery);
+    setState(() {
+      _pic = File(tempImage!.path);
+      imageSelected = true;
+    });
+  }
+
+  Future _captureWithCamera () async {
+    var tempImage = await picker.pickImage(source: ImageSource.camera);
+    setState(() {
+      _pic = File(tempImage!.path);
+      imageSelected = true;
+    });
+  }
+
+  selectImage(ncontext) {
+    return showDialog(
+      context: ncontext, 
+      builder: (c) {
+        return SimpleDialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15)
+          ),
+          title: const Text("Upload a picture of thye Fault"),
+          children: [
+            SimpleDialogOption(
+              child: const Text("Select from Gallery"),
+              onPressed: () {
+                _selectFromGallery();
+                Navigator.pop(context);
+              },
+            ),
+            SimpleDialogOption(
+              child: const Text("Capture with camera"),
+              onPressed: () {
+                _captureWithCamera();
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        );
+      }
+      );
+  }
+
   @override
   Widget build(BuildContext context) {
-    // var height = MediaQuery.of(context).size.height;
-    // var width = MediaQuery.of(context).size.width;
+    var height = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
@@ -27,9 +79,9 @@ class _ReportState extends State<Report> {
         backgroundColor: Colors.lightBlue,
       ),
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            const Padding(
+          child: Column(
+        children: [
+          const Padding(
             padding: EdgeInsets.only(left: 30.0, top: 40, right: 30, bottom: 0),
             child: Expanded(
                 child: Text(
@@ -37,46 +89,64 @@ class _ReportState extends State<Report> {
               style: TextStyle(fontSize: 22, fontWeight: FontWeight.w500),
             )),
           ),
-            Padding(
-              padding: const EdgeInsets.only(top: 30, bottom: 10, left: 30, right: 10),
-              child: TextField(
-                controller: _name,
-                decoration: const InputDecoration(
-                  labelText: "Name"
-                ),
-              ),
+          Container(
+            height: height * 0.45,
+            // width: width * 0.7,
+            padding: EdgeInsets.only(top: 30),
+            child: imageSelected ? 
+                   InkWell(
+                    onTap: () {
+                      selectImage(context);
+                    },
+                    // child: CircleAvatar(
+                    //   radius: width * 0.5,
+                    //   backgroundImage: FileImage(_pic),
+                    // ),
+                    child: Image.file(_pic),
+                   )
+                  :IconButton(
+            onPressed: () {
+              selectImage(context);
+            },
+            icon: const Icon(Icons.camera_alt_rounded, size: 300,)),
+          ),
+          const Text("Add an image of the fault"),
+          Padding(
+            padding:
+                const EdgeInsets.only(top: 30, bottom: 10, left: 15, right: 15),
+            child: TextField(
+              controller: _name,
+              decoration: const InputDecoration(labelText: "Name"),
             ),
-            Padding(
-              padding: const EdgeInsets.only(top: 30, bottom: 10, left: 30, right: 10),
-              child: TextField(
-                controller: _location,
-                decoration: const InputDecoration(
-                  labelText: "Location"
-                ),
-              ),
+          ),
+          Padding(
+            padding:
+                const EdgeInsets.only(top: 30, bottom: 10, left: 15, right: 15),
+            child: TextField(
+              controller: _location,
+              decoration: const InputDecoration(labelText: "Location"),
             ),
-            Padding(
-                    padding:
-                        const EdgeInsets.only(top: 45.0, left: 15, right: 15),
-                    child: TextFormField(
-                      controller: _details,
-                      decoration: InputDecoration(
-                        alignLabelWithHint: true,
-                        labelStyle: const TextStyle(
-                          fontSize: 14,
-                        ),
-                        labelText: "Descripton",
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                          borderSide:
-                              const BorderSide(color: Colors.grey, width: 1.5),
-                        ),
-                      ),
-                      maxLines: 7,
-                    )),
-          ],
-        )
-      ),
+          ),
+          Padding(
+              padding: const EdgeInsets.only(top: 45.0, left: 15, right: 15),
+              child: TextFormField(
+                controller: _details,
+                decoration: InputDecoration(
+                  alignLabelWithHint: true,
+                  labelStyle: const TextStyle(
+                    fontSize: 14,
+                  ),
+                  labelText: "Descripton",
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide:
+                        const BorderSide(color: Colors.grey, width: 1.5),
+                  ),
+                ),
+                maxLines: 7,
+              )),
+        ],
+      )),
     );
   }
 }
