@@ -16,7 +16,7 @@ class _UserHomeState extends State<UserHome> {
           child: Column(
               children: [
           Padding(
-            padding: EdgeInsets.all(16),
+            padding: const EdgeInsets.all(16),
             child: SizedBox(
               width: 400,
               height: 300,
@@ -47,7 +47,7 @@ class _UserHomeState extends State<UserHome> {
             ),
           ),
           Container(
-            padding: EdgeInsets.all(10),
+            padding: const EdgeInsets.all(10),
             width: 400,
             height: 240,
             child: DChartPie(
@@ -76,11 +76,11 @@ class _UserHomeState extends State<UserHome> {
                   ),
           ),
           Padding(
-                padding: EdgeInsets.all(16),
+                padding: const EdgeInsets.all(16),
                 child: AspectRatio(
                   aspectRatio: 16 / 9,
                   child: DChartGauge(
-                    data: [
+                    data:const  [
                       {'domain': 'Off', 'measure': 30},
                       {'domain': 'Warm', 'measure': 30},
                       {'domain': 'Hot', 'measure': 30},
