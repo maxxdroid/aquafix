@@ -17,12 +17,11 @@ class _ReportState extends State<Report> {
   final TextEditingController _location = TextEditingController();
   final TextEditingController _details = TextEditingController();
 
-
   bool imageSelected = false;
   late File _pic;
   final picker = ImagePicker();
 
-  Future _selectFromGallery() async{
+  Future _selectFromGallery() async {
     var tempImage = await picker.pickImage(source: ImageSource.gallery);
     setState(() {
       _pic = File(tempImage!.path);
@@ -30,7 +29,7 @@ class _ReportState extends State<Report> {
     });
   }
 
-  Future _captureWithCamera () async {
+  Future _captureWithCamera() async {
     var tempImage = await picker.pickImage(source: ImageSource.camera);
     setState(() {
       _pic = File(tempImage!.path);
@@ -40,32 +39,30 @@ class _ReportState extends State<Report> {
 
   selectImage(ncontext) {
     return showDialog(
-      context: ncontext, 
-      builder: (c) {
-        return SimpleDialog(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15)
-          ),
-          title: const Text("Upload a picture of thye Fault"),
-          children: [
-            SimpleDialogOption(
-              child: const Text("Select from Gallery"),
-              onPressed: () {
-                _selectFromGallery();
-                Navigator.pop(context);
-              },
-            ),
-            SimpleDialogOption(
-              child: const Text("Capture with camera"),
-              onPressed: () {
-                _captureWithCamera();
-                Navigator.pop(context);
-              },
-            ),
-          ],
-        );
-      }
-      );
+        context: ncontext,
+        builder: (c) {
+          return SimpleDialog(
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+            title: const Text("Upload a picture of thye Fault"),
+            children: [
+              SimpleDialogOption(
+                child: const Text("Select from Gallery"),
+                onPressed: () {
+                  _selectFromGallery();
+                  Navigator.pop(context);
+                },
+              ),
+              SimpleDialogOption(
+                child: const Text("Capture with camera"),
+                onPressed: () {
+                  _captureWithCamera();
+                  Navigator.pop(context);
+                },
+              ),
+            ],
+          );
+        });
   }
 
   @override
@@ -93,18 +90,21 @@ class _ReportState extends State<Report> {
             height: height * 0.45,
             // width: width * 0.7,
             padding: const EdgeInsets.only(top: 30),
-            child: imageSelected ? 
-                   InkWell(
+            child: imageSelected
+                ? InkWell(
                     onTap: () {
                       selectImage(context);
                     },
                     child: Image.file(_pic),
-                   )
-                  :IconButton(
-            onPressed: () {
-              selectImage(context);
-            },
-            icon: const Icon(Icons.camera_alt_rounded, size: 300,)),
+                  )
+                : IconButton(
+                    onPressed: () {
+                      selectImage(context);
+                    },
+                    icon: const Icon(
+                      Icons.camera_alt_rounded,
+                      size: 300,
+                    )),
           ),
           const Text("Add an image of the fault"),
           Padding(
@@ -140,26 +140,30 @@ class _ReportState extends State<Report> {
                   ),
                 ),
                 maxLines: 7,
-              )
+              )),
+          const SizedBox(
+            height: 20,
           ),
-          const SizedBox(height: 20,),
           Container(
-                    padding: const EdgeInsets.only(top: 5.0, left: 15, right: 15, bottom: 20),
-                    height: height * 0.1,
-                    width: 200,
-                    child: ElevatedButton(
-                      onPressed: (){
-                        Navigator.pop(context);
-                      },
-                      style: ElevatedButton.styleFrom(
-                        foregroundColor: Colors.purple, backgroundColor: Colors.lightBlue
-                      ), 
-                      child: const Text("Submit Report", style: TextStyle(color: Colors.white, fontSize: 16),),
-                      ),
-                  ),
+            padding: const EdgeInsets.only(
+                top: 5.0, left: 15, right: 15, bottom: 20),
+            height: height * 0.1,
+            width: 200,
+            child: ElevatedButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              style: ElevatedButton.styleFrom(
+                  foregroundColor: Colors.purple,
+                  backgroundColor: Colors.lightBlue),
+              child: const Text(
+                "Submit Report",
+                style: TextStyle(color: Colors.white, fontSize: 16),
+              ),
+            ),
+          ),
         ],
-      )
-    ),
+      )),
     );
   }
 }

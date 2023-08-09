@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+// import './auth.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({super.key});
@@ -53,7 +54,7 @@ class _SignInState extends State<SignIn> {
                         labelStyle: const TextStyle(
                           fontSize: 14,
                         ),
-                        labelText: "Email address",
+                        labelText: "Meter Number",
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
                           borderSide:

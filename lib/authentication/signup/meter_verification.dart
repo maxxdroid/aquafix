@@ -1,9 +1,13 @@
 import 'dart:io';
+import 'package:aquafix/authentication/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 class MeterVerification extends StatefulWidget {
-  const MeterVerification({super.key});
+  final String meterNum;
+  final String metername;
+  final String password;
+  const MeterVerification({super.key, required this.meterNum, required this.metername,required this.password});
 
   @override
   State<MeterVerification> createState() => _MeterVerificationState();
@@ -109,7 +113,8 @@ class _MeterVerificationState extends State<MeterVerification> {
       ),
       floatingActionButton: ElevatedButton(
         onPressed: () {
-          Navigator.pushNamed(context, "home");
+          // Navigator.pushNamed(context, "home");
+          AuthMethods().signUpWithEmailandPassword(widget.meterNum, widget.password, widget.password, context);
         },
         style: ElevatedButton.styleFrom(
             foregroundColor: Colors.purple, backgroundColor: Colors.lightBlue),

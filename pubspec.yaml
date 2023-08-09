@@ -35,6 +35,8 @@ dependencies:
   cloud_firestore: ^4.8.4
   firebase_storage: ^11.2.5
   d_chart: ^2.3.0
+  firebase_auth: ^4.7.2
+  fluttertoast: ^8.2.2
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -79,14 +81,14 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  fonts:
-    - family: Roboto
-      fonts:
-        - asset: assets/fonts/Roboto-Regular.tff
-        - asset: assets/fonts/Roboto-Bold.tff
-          weight: 700
-        - asset: assets/fonts/Roboto-Black.tff
-          weight: 900
+  # fonts:
+  #   - family: Roboto
+  #     fonts:
+  #       - asset: assets/fonts/Roboto-Regular.tff
+  #       - asset: assets/fonts/Roboto-Bold.tff
+  #         weight: 700
+  #       - asset: assets/fonts/Roboto-Black.tff
+  #         weight: 900
     
 
   #

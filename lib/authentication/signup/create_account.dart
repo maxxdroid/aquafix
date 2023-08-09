@@ -1,3 +1,4 @@
+import 'package:aquafix/authentication/signup/meter_verification.dart';
 import 'package:flutter/material.dart';
 
 class CreateAccount extends StatefulWidget {
@@ -9,7 +10,10 @@ class CreateAccount extends StatefulWidget {
 
 class _CreateAccountState extends State<CreateAccount> {
   final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _meterNumberController = TextEditingController();
+  final TextEditingController _confirmPasswordController =
+      TextEditingController();
+  final TextEditingController _meterNameController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   bool _obscure = true;
 
@@ -33,7 +37,7 @@ class _CreateAccountState extends State<CreateAccount> {
                       padding: EdgeInsets.only(left: 30.0, top: 30, right: 30),
                       child: Expanded(
                           child: Text(
-                        "Enter your meter number and Password",
+                        "Enter your Meter number and create a Password",
                         style: TextStyle(
                             fontSize: 22, fontWeight: FontWeight.w500),
                       )),
@@ -41,16 +45,16 @@ class _CreateAccountState extends State<CreateAccount> {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(
-                        top: 20, left: 30, right: 30, bottom: 30),
+                        top: 20, left: 30, right: 30, bottom: 10),
                     child: TextFormField(
                       autofocus: true,
                       validator: (val) {
-                        if (_usernameController.text.isEmpty) {
+                        if (_meterNumberController.text.isEmpty) {
                           return "Field cannot be empty";
                         }
                         return null;
                       },
-                      controller: _usernameController,
+                      controller: _meterNumberController,
                       decoration: InputDecoration(
                         // prefixText: '@',
                         labelStyle: const TextStyle(
@@ -71,16 +75,16 @@ class _CreateAccountState extends State<CreateAccount> {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(
-                        top: 20, left: 30, right: 30, bottom: 30),
+                        top: 20, left: 30, right: 30, bottom: 10),
                     child: TextFormField(
                       autofocus: true,
                       validator: (val) {
-                        if (_usernameController.text.isEmpty) {
+                        if (_meterNameController.text.isEmpty) {
                           return "Field cannot be empty";
                         }
                         return null;
                       },
-                      controller: _usernameController,
+                      controller: _meterNameController,
                       decoration: InputDecoration(
                         // prefixText: '@',
                         labelStyle: const TextStyle(
@@ -149,15 +153,18 @@ class _CreateAccountState extends State<CreateAccount> {
                       autofocus: true,
                       obscureText: _obscure,
                       validator: (val) {
-                        if (_passwordController.text.isEmpty) {
+                        if (_confirmPasswordController.text.isEmpty) {
                           return "Field cannot be empty";
-                        } else if (_passwordController.text.length < 8) {
+                        } else if (_confirmPasswordController.text.length < 8) {
                           return "Password cannot be less that 8 characters";
+                        } else if (_confirmPasswordController.text !=
+                            _passwordController.text) {
+                          return "Passwords do not match";
                         } else {
                           return null;
                         }
                       },
-                      controller: _passwordController,
+                      controller: _confirmPasswordController,
                       decoration: InputDecoration(
                         suffixIcon: IconButton(
                           icon: _obscure
@@ -185,7 +192,6 @@ class _CreateAccountState extends State<CreateAccount> {
                       ),
                     ),
                   ),
-                  
                 ],
               ),
             ),
@@ -194,7 +200,17 @@ class _CreateAccountState extends State<CreateAccount> {
       ),
       floatingActionButton: ElevatedButton(
         onPressed: () {
-          Navigator.pushNamed(context, "meter_verification");
+          // Navigator.pushNamed(context, "meter_verification");
+          final FormState? form = _formKey.currentState;
+          if (form!.validate()) {
+            Route route = MaterialPageRoute(
+                builder: (c) => MeterVerification(
+                      meterNum: _meterNumberController.text.toString(),
+                      metername: _meterNameController.text.toString().trim(),
+                      password: _passwordController.text.toString().trim(),
+                    ));
+            Navigator.push(context, route);
+          }
         },
         style: ElevatedButton.styleFrom(
             foregroundColor: Colors.purple, backgroundColor: Colors.lightBlue),

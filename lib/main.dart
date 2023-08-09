@@ -3,7 +3,7 @@ import './authentication/login.dart';
 import 'package:firebase_core/firebase_core.dart';
 import './screens/home.dart';
 import './authentication/signup/create_account.dart';
-import './authentication/signup/meter_verification.dart';
+// import './authentication/signup/meter_verification.dart';
 
 Future <void> main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,13 +23,13 @@ class MyApp extends StatelessWidget {
         "home" : (context) => const HomePage(),
         "login" : (context) => const SignIn(),
         "signup" : (context) => const CreateAccount(),
-        "meter_verification" : (context) => const MeterVerification(),
+        // "meter_verification" : (context) => const MeterVerification(),
         "signIn" : (context) => const SignIn(),
       },
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple.shade400),
         useMaterial3: true,
-        fontFamily: 'Roboto',
+        // fontFamily: 'Roboto',
       ),
       home: const SignIn(),
       debugShowCheckedModeBanner: false,
