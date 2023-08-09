@@ -3,6 +3,7 @@ import './authentication/login.dart';
 import 'package:firebase_core/firebase_core.dart';
 import './screens/home.dart';
 import './authentication/signup/create_account.dart';
+import './screen.dart';
 // import './authentication/signup/meter_verification.dart';
 
 Future <void> main() async{
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         // fontFamily: 'Roboto',
       ),
-      home: const SignIn(),
+      home: const Screen(),
       debugShowCheckedModeBanner: false,
     );
   }
