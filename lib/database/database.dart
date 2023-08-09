@@ -4,14 +4,33 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class DataBaseMethods {
   String dVariable = DateTime.now().microsecondsSinceEpoch.toString();
 
-  Future addUserInfoToDob(String userId, Map<String, dynamic>userInfoMap) {
-    return FirebaseFirestore.instance.collection("users").doc(userId).set(userInfoMap);
+  Future addUserInfoToDob(String userId, Map<String, dynamic> userInfoMap) {
+    return FirebaseFirestore.instance
+        .collection("users")
+        .doc(userId)
+        .set(userInfoMap);
+  }
+
+  Future addUserReportInfoToDob(
+      String userId, Map<String, dynamic> userReportMap) {
+    FirebaseFirestore.instance
+        .collection("Reports")
+        .doc(dVariable)
+        .set(userReportMap);
+    return FirebaseFirestore.instance
+        .collection("users")
+        .doc(userId)
+        .collection("Reports")
+        .doc("Reports$dVariable")
+        .set(userReportMap);
   }
 
   Future<Stream<QuerySnapshot>> getChatroomMessages(userID) async {
-    return FirebaseFirestore.instance.collection("users").doc(userID)
-    .collection("chats")
-    .orderBy("time", descending: true)
-    .snapshots();
+    return FirebaseFirestore.instance
+        .collection("users")
+        .doc(userID)
+        .collection("chats")
+        .orderBy("time", descending: true)
+        .snapshots();
   }
 }
