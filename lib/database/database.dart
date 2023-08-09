@@ -12,17 +12,18 @@ class DataBaseMethods {
   }
 
   Future addUserReportInfoToDob(
-      String userId, Map<String, dynamic> userReportMap) {
-    FirebaseFirestore.instance
+      // String userId, 
+      Map<String, dynamic> userReportMap) {
+    return FirebaseFirestore.instance
         .collection("Reports")
         .doc(dVariable)
         .set(userReportMap);
-    return FirebaseFirestore.instance
-        .collection("users")
-        .doc(userId)
-        .collection("Reports")
-        .doc("Reports$dVariable")
-        .set(userReportMap);
+    // return FirebaseFirestore.instance
+    //     .collection("users")
+    //     .doc(userId)
+    //     .collection("Reports")
+    //     .doc("Reports$dVariable")
+    //     .set(userReportMap);
   }
 
   Future<Stream<QuerySnapshot>> getChatroomMessages(userID) async {
