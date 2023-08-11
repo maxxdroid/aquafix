@@ -1,3 +1,4 @@
+import 'package:aquafix/authentication/auth.dart';
 import 'package:flutter/material.dart';
 // import './auth.dart';
 
@@ -9,7 +10,7 @@ class AdminLogin extends StatefulWidget {
 }
 
 class _SignInState extends State<AdminLogin> {
-  // final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _adminIdController = TextEditingController();
 
@@ -22,6 +23,7 @@ class _SignInState extends State<AdminLogin> {
         child: Container(
             padding: const EdgeInsets.all(10),
             child: Form(
+              key: _formKey,
                 child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -95,10 +97,10 @@ class _SignInState extends State<AdminLogin> {
                   width: width * 0.6,
                   child: ElevatedButton(
                     onPressed: () {
-                      // final FormState? form = _formKey.currentState;
-                      // if (form!.validate()){
-                      //   AuthMethods().signInWithEmailandPAssword(_adminIdController.toString().trim(), _passwordController.text.trim(), context);
-                      // }
+                      final FormState? form = _formKey.currentState;
+                      if (form!.validate()){
+                        AuthMethods().signInWithEmailandPAssword(_adminIdController.toString().trim(), _passwordController.text.trim(), context);
+                      }
                     },
                     style: ElevatedButton.styleFrom(
                         foregroundColor: Colors.purple,
