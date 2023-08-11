@@ -123,7 +123,7 @@ class _SignInState extends State<SignIn> {
                     onPressed: () {
                       final FormState? form = _formKey.currentState;
                       if (form!.validate()){
-                        AuthMethods().signInWithEmailandPAssword(_meterNumController.toString().trim(), _passwordController.text.trim(), context);
+                        AuthMethods().signInWithEmailandPAssword(_meterNumController.text.toString().trim(), _passwordController.text.trim(), context);
                       }
                     },
                     style: ElevatedButton.styleFrom(

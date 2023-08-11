@@ -20,7 +20,7 @@ class _UserSettingsState extends State<UserSettings> {
         TextButton(
             onPressed: () {
               AuthMethods().logOutUser();
-              Navigator.pushNamed(context, "signup");
+              Navigator.pushReplacementNamed(context, "login");
             },
             child: const Text("Log Out"))
       ],

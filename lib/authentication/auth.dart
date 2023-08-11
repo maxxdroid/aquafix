@@ -12,6 +12,13 @@ class AuthMethods {
 
   signInWithEmailandPAssword(
       String meterNumber, String password, BuildContext context) async {
+      showDialog(
+        context: context,
+        builder: (_) {
+          return const LoadingAlert(
+            message: 'Registering please wait...',
+          );
+        });
     // late User? firebseUser;
     String email = "$meterNumber@gmail.com";
     await auth
@@ -21,6 +28,7 @@ class AuthMethods {
       // readLogInData(firebseUser!);
       Navigator.popAndPushNamed(context, "home");
     }).onError((error, stackTrace) {
+      Navigator.of(context);
       // logInErrorHandling(error.toString());
     });
   }
