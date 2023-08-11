@@ -1,5 +1,7 @@
+import 'package:aquafix/admin/admin_home.dart';
 import 'package:aquafix/database/database.dart';
 import 'package:aquafix/widgets/loading_alert.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 // import 'package:firebase_core/firebase_core.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -27,54 +29,71 @@ class AuthMethods {
     auth.signOut();
   }
 
-  signUpWithEmailandPassword(String meterNum, String password, String name, BuildContext context) async {
-
+  signUpWithEmailandPassword(String meterNum, String password, String name,
+      BuildContext context) async {
     String mail = "$meterNum@gmail.com";
 
     late User? firebaseUser;
 
     showDialog(
-    context: context,
-    builder: (_) {
-      return const LoadingAlert(
-        message: 'Registering please wait...',
-      );
-    });
+        context: context,
+        builder: (_) {
+          return const LoadingAlert(
+            message: 'Registering please wait...',
+          );
+        });
 
-    await auth.createUserWithEmailAndPassword(email: mail, password: password).
-    then((authUser) {
+    await auth
+        .createUserWithEmailAndPassword(email: mail, password: password)
+        .then((authUser) {
       firebaseUser = authUser.user;
 
       // String userName = email.replaceAll("@gmail.com", "");
-      
+
       // SharedPrefHelper().saveUserEmail(email);
       // SharedPrefHelper().saveUserID(firebaseUser!.uid);
       // SharedPrefHelper().saveUserDisplayName(name);
       // SharedPrefHelper().saveUserName(userName);
 
       Map<String, dynamic> userInfoMap = {
-        "Email" : mail,
-        "Name" : name,
-        "imgUrl" : "",
-        "Meter Number" : meterNum
+        "Email": mail,
+        "Name": name,
+        "imgUrl": "",
+        "Meter Number": meterNum
       };
 
-      DataBaseMethods().addUserInfoToDob(firebaseUser!.uid, userInfoMap).then((value) {
+      DataBaseMethods()
+          .addUserInfoToDob(firebaseUser!.uid, userInfoMap)
+          .then((value) {
         Navigator.pushReplacementNamed(context, "home");
       });
-      
-    }).onError((error, stackTrace){
+    }).onError((error, stackTrace) {
       // signUpErrorHandling(error.toString());
     });
   }
 
-  signUpErrorHandling (error) {
+  loginAdmin(String id, String password, BuildContext context) async {
+    var collection = FirebaseFirestore.instance.collection('Admin');
+    collection.doc('users').snapshots().listen((docSnapshot) {
+      if (docSnapshot.exists) {
+        Map<String, dynamic> data = docSnapshot.data()!;
+        var id0 = data['id'];
+        var password0 = data['password'];
+        if (id0 == id && password0 == password) {
+          Route route = MaterialPageRoute(builder: (_) => const AdminHome());
+          Navigator.pushReplacement(context, route);
+        }
+      }
+    });
+  }
+
+  signUpErrorHandling(error) {
     switch (error) {
       case "[firebase_auth/email-already-in-use] The email address is already in use by another account.":
-      // case "email-already-in-use":
+        // case "email-already-in-use":
         Fluttertoast.showToast(msg: "Email already used. Go to login page.");
         break;
-        // return "Email already used. Go to login page.";
+      // return "Email already used. Go to login page.";
       case "ERROR_WRONG_PASSWORD":
       case "wrong-password":
         Fluttertoast.showToast(msg: "Wrong email/password combination.");
@@ -89,7 +108,8 @@ class AuthMethods {
         break;
       case "ERROR_TOO_MANY_REQUESTS":
       case "operation-not-allowed":
-        Fluttertoast.showToast(msg: "Too many requests to log into this account.");
+        Fluttertoast.showToast(
+            msg: "Too many requests to log into this account.");
         break;
       case "ERROR_OPERATION_NOT_ALLOWED":
         Fluttertoast.showToast(msg: "Server error, please try again later.");
@@ -102,5 +122,5 @@ class AuthMethods {
         Fluttertoast.showToast(msg: "Sign up error try again later");
         break;
     }
-  } 
+  }
 }

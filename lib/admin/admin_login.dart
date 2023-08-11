@@ -99,12 +99,12 @@ class _SignInState extends State<AdminLogin> {
                     onPressed: () {
                       final FormState? form = _formKey.currentState;
                       if (form!.validate()){
-                        AuthMethods().signInWithEmailandPAssword(_adminIdController.toString().trim(), _passwordController.text.trim(), context);
+                        AuthMethods().loginAdmin(_adminIdController.text.trim(), _passwordController.text.trim(), context);
                       }
                     },
                     style: ElevatedButton.styleFrom(
                         foregroundColor: Colors.purple,
-                        backgroundColor: Colors.lightBlue),
+                        backgroundColor: Color.fromARGB(255, 37, 182, 255)),
                     child: const Text(
                       "Log In",
                       style: TextStyle(color: Colors.white, fontSize: 16),
