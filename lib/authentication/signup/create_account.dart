@@ -137,7 +137,7 @@ class _CreateAccountState extends State<CreateAccount> {
                         labelStyle: const TextStyle(
                           fontSize: 14,
                         ),
-                        labelText: "Confirm Password",
+                        labelText: "Password",
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
                           borderSide:
@@ -183,7 +183,7 @@ class _CreateAccountState extends State<CreateAccount> {
                         labelStyle: const TextStyle(
                           fontSize: 14,
                         ),
-                        labelText: "Password",
+                        labelText: "Confirm Password",
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
                           borderSide:

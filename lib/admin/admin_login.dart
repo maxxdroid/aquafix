@@ -1,19 +1,17 @@
-import 'package:aquafix/admin/admin_login.dart';
-import 'package:aquafix/authentication/auth.dart';
 import 'package:flutter/material.dart';
 // import './auth.dart';
 
-class SignIn extends StatefulWidget {
-  const SignIn({super.key});
+class AdminLogin extends StatefulWidget {
+  const AdminLogin({super.key});
 
   @override
-  State<SignIn> createState() => _SignInState();
+  State<AdminLogin> createState() => _SignInState();
 }
 
-class _SignInState extends State<SignIn> {
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+class _SignInState extends State<AdminLogin> {
+  // final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _meterNumController = TextEditingController();
+  final TextEditingController _adminIdController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +22,6 @@ class _SignInState extends State<SignIn> {
         child: Container(
             padding: const EdgeInsets.all(10),
             child: Form(
-              key: _formKey,
                 child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -37,12 +34,6 @@ class _SignInState extends State<SignIn> {
                     style: TextStyle(fontSize: 30, fontWeight: FontWeight.w500),
                   ),
                 ),
-                // Padding(
-                //     padding: EdgeInsets.only(left: width * 0),
-                //     child: const Text(
-                //       "Welcome back",
-                //       style: TextStyle(fontSize: 30),
-                //     )),
                 SizedBox(
                   height: height * 0.2,
                   child: Image.asset("assets/images/glogo.png"),
@@ -51,18 +42,18 @@ class _SignInState extends State<SignIn> {
                     padding:
                         const EdgeInsets.only(top: 45.0, left: 15, right: 15),
                     child: TextFormField(
-                      controller: _meterNumController,
                       validator: (val) {
-                        if (_meterNumController.text.isEmpty) {
+                        if (_adminIdController.text.isEmpty) {
                           return "Field cannot be empty";
                         }
                         return null;
                       },
+                      controller: _adminIdController,
                       decoration: InputDecoration(
                         labelStyle: const TextStyle(
                           fontSize: 14,
                         ),
-                        labelText: "Meter Number",
+                        labelText: "Admin Id",
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
                           borderSide:
@@ -72,7 +63,7 @@ class _SignInState extends State<SignIn> {
                     )),
                 Padding(
                     padding:
-                        const EdgeInsets.only(top: 45.0, left: 15, right: 15),
+                        const EdgeInsets.only(top: 45.0, left: 15, right: 15, bottom: 30),
                     child: TextFormField(
                       controller: _passwordController,
                       obscureText: true,
@@ -97,23 +88,6 @@ class _SignInState extends State<SignIn> {
                         ),
                       ),
                     )),
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: Padding(
-                      padding: const EdgeInsets.only(left: 8, top: 10),
-                      child: TextButton(
-                        onPressed: () {},
-                        style: TextButton.styleFrom(
-                          foregroundColor: Colors.blue,
-                        ),
-                        child: const Text(
-                          "forgot your password?",
-                          style: TextStyle(
-                            fontSize: 12,
-                          ),
-                        ),
-                      )),
-                ),
                 Container(
                   padding: const EdgeInsets.only(
                       top: 5.0, left: 15, right: 15, bottom: 20),
@@ -121,10 +95,10 @@ class _SignInState extends State<SignIn> {
                   width: width * 0.6,
                   child: ElevatedButton(
                     onPressed: () {
-                      final FormState? form = _formKey.currentState;
-                      if (form!.validate()){
-                        AuthMethods().signInWithEmailandPAssword(_meterNumController.toString().trim(), _passwordController.text.trim(), context);
-                      }
+                      // final FormState? form = _formKey.currentState;
+                      // if (form!.validate()){
+                      //   AuthMethods().signInWithEmailandPAssword(_adminIdController.toString().trim(), _passwordController.text.trim(), context);
+                      // }
                     },
                     style: ElevatedButton.styleFrom(
                         foregroundColor: Colors.purple,
@@ -135,55 +109,6 @@ class _SignInState extends State<SignIn> {
                     ),
                   ),
                 ),
-                const Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Flexible(
-                      child: Padding(
-                        padding: EdgeInsets.only(right: 8.0, left: 20),
-                        child: Divider(
-                          height: 2,
-                          color: Colors.black,
-                          thickness: 0.5,
-                        ),
-                      ),
-                    ),
-                    Text("OR"),
-                    Flexible(
-                        child: Padding(
-                      padding: EdgeInsets.only(right: 20.0, left: 8),
-                      child: Divider(
-                        height: 2,
-                        color: Colors.black,
-                        thickness: 0.5,
-                      ),
-                    )),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text("Don't Have an account?"),
-                    TextButton(
-                        onPressed: () {
-                          Navigator.pushNamed(context, "signup");
-                        },
-                        child: const Text("Resgister"))
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text("Are you an admin?"),
-                    TextButton(
-                        onPressed: () {
-                          Route route = MaterialPageRoute(
-                              builder: (_) => const AdminLogin());
-                          Navigator.push(context, route);
-                        },
-                        child: const Text("Log in"))
-                  ],
-                )
               ],
             ))),
       ),

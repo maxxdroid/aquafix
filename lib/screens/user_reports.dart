@@ -218,8 +218,6 @@ class _UserReportsState extends State<UserReports> {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
                         ),
-                        // height: 50,
-                        // width: 50,
                         padding: const EdgeInsets.all(30),
                         child: Image.asset(
                           // height: 20,

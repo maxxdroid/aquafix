@@ -9,8 +9,9 @@ class AuthMethods {
   FirebaseAuth auth = FirebaseAuth.instance;
 
   signInWithEmailandPAssword(
-      String email, String password, BuildContext context) async {
+      String meterNumber, String password, BuildContext context) async {
     // late User? firebseUser;
+    String email = "$meterNumber@gmail.com";
     await auth
         .signInWithEmailAndPassword(email: email, password: password)
         .then((authUser) {
@@ -59,7 +60,7 @@ class AuthMethods {
       };
 
       DataBaseMethods().addUserInfoToDob(firebaseUser!.uid, userInfoMap).then((value) {
-        Navigator.pushNamed(context, "home");
+        Navigator.pushReplacementNamed(context, "home");
       });
       
     }).onError((error, stackTrace){
