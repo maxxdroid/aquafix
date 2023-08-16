@@ -16,7 +16,7 @@ class AuthMethods {
         context: context,
         builder: (_) {
           return const LoadingAlert(
-            message: 'Registering please wait...',
+            message: 'Logging in please wait...',
           );
         });
     // late User? firebseUser;

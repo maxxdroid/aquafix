@@ -46,7 +46,7 @@ class _CreateAccountState extends State<CreateAccount> {
                   Padding(
                     padding: const EdgeInsets.only(
                         top: 20, left: 30, right: 30, bottom: 10),
-                    child: TextFormField(
+                    child: TextFormField(                      
                       autofocus: true,
                       validator: (val) {
                         if (_meterNumberController.text.isEmpty) {
@@ -55,6 +55,7 @@ class _CreateAccountState extends State<CreateAccount> {
                         return null;
                       },
                       controller: _meterNumberController,
+                      keyboardType: TextInputType.number,
                       decoration: InputDecoration(
                         // prefixText: '@',
                         labelStyle: const TextStyle(

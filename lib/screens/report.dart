@@ -46,7 +46,7 @@ class _ReportState extends State<Report> {
           return SimpleDialog(
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-            title: const Text("Upload a picture of thye Fault"),
+            title: const Text("Upload a picture of the Fault"),
             children: [
               SimpleDialogOption(
                 child: const Text("Select from Gallery"),

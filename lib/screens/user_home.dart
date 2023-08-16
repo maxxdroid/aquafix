@@ -14,7 +14,13 @@ class _UserHomeState extends State<UserHome> {
     return Scaffold(
         body: SingleChildScrollView(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
               children: [
+                Container(
+                  padding: const EdgeInsets.only(top: 30),
+                  child: Text("Your Bil for this month is "),
+                ),
+                Text("GHC 90.00", style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),),
           Padding(
             padding: const EdgeInsets.all(16),
             child: SizedBox(
@@ -25,13 +31,13 @@ class _UserHomeState extends State<UserHome> {
                   {
                     'id': 'Bar',
                     'data': [
-                      {'domain': 'Jan', 'measure': 8},
-                      {'domain': 'Feb', 'measure': 4},
-                      {'domain': 'April', 'measure': 6},
-                      {'domain': 'March', 'measure': 0.3},
-                      {'domain': 'May', 'measure': 5},
-                      {'domain': 'Jun', 'measure': 4.1},
-                      {'domain': 'Jul', 'measure': 2},
+                      // {'domain': 'Jan', 'measure': 8},
+                      // {'domain': 'Feb', 'measure': 0.9},
+                      {'domain': 'April', 'measure': 0.8},
+                      {'domain': 'March', 'measure': 0.6},
+                      {'domain': 'May', 'measure': 0.7},
+                      {'domain': 'Jun', 'measure': 0.4},
+                      {'domain': 'Jul', 'measure': 0.3},
                     ],
                   },
                 ],

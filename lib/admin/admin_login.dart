@@ -51,6 +51,7 @@ class _SignInState extends State<AdminLogin> {
                         return null;
                       },
                       controller: _adminIdController,
+                      keyboardType: TextInputType.number,
                       decoration: InputDecoration(
                         labelStyle: const TextStyle(
                           fontSize: 14,

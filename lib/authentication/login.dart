@@ -52,6 +52,7 @@ class _SignInState extends State<SignIn> {
                         const EdgeInsets.only(top: 45.0, left: 15, right: 15),
                     child: TextFormField(
                       controller: _meterNumController,
+                      keyboardType: TextInputType.number,
                       validator: (val) {
                         if (_meterNumController.text.isEmpty) {
                           return "Field cannot be empty";
