@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:aquafix/database/database.dart';
+import 'package:aquafix/widgets/loading_alert.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -176,15 +177,26 @@ class _ReportState extends State<Report> {
               height: height * 0.1,
               width: 200,
               child: ElevatedButton(
-                onPressed: () {
+                onPressed: () async {
                   final FormState? form = _formKey.currentState;
                   if (form!.validate()) {
                     Map<String, dynamic> userReportMap = {
-                      "Name": _name,
-                      "location" : _location,
-                      "Description" : _details,
-                      };
-                    DataBaseMethods().addUserReportInfoToDob(userReportMap).then((value) => Navigator.pop(context));
+                      "Name": _name.text.toString(),
+                      "location": _location.text.toString(),
+                      "Description": _details.text.toString(),
+                    };
+
+                    showDialog(
+                        context: context,
+                        builder: (_) {
+                          return const LoadingAlert(
+                            message: 'Sending Report please wait...',
+                          );
+                        });
+
+                    await DataBaseMethods()
+                        .addUserReportInfoToDob(userReportMap)
+                        .then((value) {Navigator.pop(context); Navigator.pop(context);});
                   }
                   // Navigator.pop(context);
                 },

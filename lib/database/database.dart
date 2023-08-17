@@ -2,8 +2,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class DataBaseMethods {
-  String dVariable = DateTime.now().microsecondsSinceEpoch.toString();
-
   Future addUserInfoToDob(String userId, Map<String, dynamic> userInfoMap) {
     return FirebaseFirestore.instance
         .collection("users")
@@ -11,19 +9,13 @@ class DataBaseMethods {
         .set(userInfoMap);
   }
 
-  Future addUserReportInfoToDob(
-      // String userId, 
-      Map<String, dynamic> userReportMap) {
+  Future addUserReportInfoToDob(Map<String, dynamic> userReportMap) {
+    print("Weeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
+    String dVariable = DateTime.now().microsecondsSinceEpoch.toString();
     return FirebaseFirestore.instance
         .collection("Reports")
         .doc(dVariable)
         .set(userReportMap);
-    // return FirebaseFirestore.instance
-    //     .collection("users")
-    //     .doc(userId)
-    //     .collection("Reports")
-    //     .doc("Reports$dVariable")
-    //     .set(userReportMap);
   }
 
   Future<Stream<QuerySnapshot>> getChatroomMessages(userID) async {
