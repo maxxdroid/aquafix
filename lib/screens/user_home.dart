@@ -1,4 +1,3 @@
-import 'package:aquafix/widgets/drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:d_chart/d_chart.dart';
 
@@ -14,20 +13,25 @@ class _UserHomeState extends State<UserHome> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          elevation: 2,
-            title: const Text("AquaFix.", style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold, color: Colors.white),),
+            elevation: 1,
+            title: const Text(
+              "AquaFix.",
+              style: TextStyle(
+                  fontSize: 26,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white),
+            ),
             backgroundColor: Colors.lightBlueAccent.shade100,
             centerTitle: true),
-            drawer: const MyDrawer(),
         body: SingleChildScrollView(
           child: Column(
             // crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Container(
                 padding: const EdgeInsets.only(top: 30),
-                child: Text("Your Bill for this month is "),
+                child: const Text("Your Bill for this month is "),
               ),
-              Text(
+              const Text(
                 "GH₵ 90.00",
                 style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
               ),
@@ -63,15 +67,20 @@ class _UserHomeState extends State<UserHome> {
                 ),
               ),
               const Padding(
-                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                padding: EdgeInsets.only(top: 30, left: 20, right: 20),
                 child: Text(
-                    "The chart below chows your water conserved for the last four months"),
+                  "The chart below chows your water conserved"
+                  " for the last four months",
+                  textAlign: TextAlign.center,
+                  // style: TextStyle(fontSize: 20),
+                ),
               ),
               Container(
                 padding: const EdgeInsets.all(10),
                 width: 400,
                 height: 240,
                 child: Card(
+                  color: Colors.amberAccent,
                   elevation: 1,
                   child: DChartPie(
                     data: const [

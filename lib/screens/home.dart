@@ -1,3 +1,4 @@
+import 'package:aquafix/screens/submitted_reports.dart';
 import 'package:aquafix/screens/user_home.dart';
 import 'package:aquafix/screens/user_reports.dart';
 import 'package:aquafix/screens/user_settings.dart';
@@ -33,6 +34,7 @@ class _HomePageState extends State<HomePage> {
           children: const [
             UserHome(),
             UserReports(),
+            SubmittedReports(),
             UserSettings(),
           ],
         ),
@@ -52,6 +54,7 @@ class _HomePageState extends State<HomePage> {
           items: const [
             BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
             BottomNavigationBarItem(icon: Icon(Icons.report_rounded), label: 'Report Issue'),
+            BottomNavigationBarItem(icon: Icon(Icons.list_alt_outlined), label: 'Reports'),
             BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'Settings'),
           ],
         ),

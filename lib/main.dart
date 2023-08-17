@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
         "signIn" : (context) => const SignIn(),
       },
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple.shade400),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
         useMaterial3: true,
         // fontFamily: 'Roboto',
       ),

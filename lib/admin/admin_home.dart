@@ -11,7 +11,7 @@ class _AdminHomeState extends State<AdminHome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Admin"), centerTitle: true,),
+      appBar: AppBar(title: const Text("Admin"), centerTitle: true,),
       body: const SingleChildScrollView(
         child: Column(
           children: [
