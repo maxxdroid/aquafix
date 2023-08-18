@@ -181,6 +181,7 @@ class _ReportState extends State<Report> {
                   final FormState? form = _formKey.currentState;
                   if (form!.validate()) {
                     Map<String, dynamic> userReportMap = {
+                      "Fault Type" : widget.title,
                       "Name": _name.text.toString(),
                       "location": _location.text.toString(),
                       "Description": _details.text.toString(),

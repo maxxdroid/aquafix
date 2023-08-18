@@ -10,7 +10,6 @@ class DataBaseMethods {
   }
 
   Future addUserReportInfoToDob(Map<String, dynamic> userReportMap) {
-    print("Weeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
     String dVariable = DateTime.now().microsecondsSinceEpoch.toString();
     return FirebaseFirestore.instance
         .collection("Reports")
