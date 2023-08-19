@@ -69,7 +69,7 @@ class _UserHomeState extends State<UserHome> {
               const Padding(
                 padding: EdgeInsets.only(top: 30, left: 20, right: 20),
                 child: Text(
-                  "The chart below chows your water conserved"
+                  "The chart below shows your water conserved"
                   " for the last four months",
                   textAlign: TextAlign.center,
                   // style: TextStyle(fontSize: 20),
