@@ -26,6 +26,7 @@ class AuthMethods {
         .then((authUser) {
       // firebseUser = authUser.user;
       // readLogInData(firebseUser!);
+      Navigator.of(context).popUntil((route) => route.isFirst);
       Navigator.popAndPushNamed(context, "home");
     }).onError((error, stackTrace) {
       Navigator.of(context);
@@ -73,6 +74,7 @@ class AuthMethods {
       DataBaseMethods()
           .addUserInfoToDob(firebaseUser!.uid, userInfoMap)
           .then((value) {
+        Navigator.of(context).popUntil((route) => route.isFirst);
         Navigator.pushReplacementNamed(context, "home");
       });
     }).onError((error, stackTrace) {
@@ -89,6 +91,7 @@ class AuthMethods {
         var password0 = data['password'];
         if (id0 == id && password0 == password) {
           Route route = MaterialPageRoute(builder: (_) => const AdminHome());
+          Navigator.of(context).popUntil((route) => route.isFirst);
           Navigator.pushReplacement(context, route);
         }
       }

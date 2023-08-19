@@ -19,6 +19,7 @@ class _ReportState extends State<Report> {
   final TextEditingController _name = TextEditingController();
   final TextEditingController _location = TextEditingController();
   final TextEditingController _details = TextEditingController();
+  final TextEditingController _phoneNumber = TextEditingController();
 
   bool imageSelected = false;
   late File _pic;
@@ -144,6 +145,26 @@ class _ReportState extends State<Report> {
               ),
             ),
             Padding(
+              padding: const EdgeInsets.only(
+                  top: 30, bottom: 10, left: 15, right: 15),
+              child: TextFormField(
+                controller: _phoneNumber,
+                decoration: const InputDecoration(
+                  prefix: Text("  +233"),
+                  labelText: "Phone Number"
+                  ),
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Enter a valid Phone Number';
+                  } else if (value.length < 9) {
+                    return 'Enter a valid Phone Number';
+                  } else {
+                    return null;
+                  }
+                },
+              ),
+            ),
+            Padding(
                 padding: const EdgeInsets.only(top: 45.0, left: 15, right: 15),
                 child: TextFormField(
                   controller: _details,
@@ -185,6 +206,8 @@ class _ReportState extends State<Report> {
                       "Name": _name.text.toString(),
                       "location": _location.text.toString(),
                       "Description": _details.text.toString(),
+                      "Phone Number": _phoneNumber.text.toString(),
+                      "Date": DateTime.now().toString(),
                     };
 
                     showDialog(

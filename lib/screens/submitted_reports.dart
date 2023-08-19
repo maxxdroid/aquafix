@@ -1,3 +1,4 @@
+import 'package:aquafix/models/report_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -25,7 +26,7 @@ class _SubmittedReportsState extends State<SubmittedReports> {
           centerTitle: true,
         ),
         body: Padding(
-          padding: const EdgeInsets.only(top:20.0),
+          padding: const EdgeInsets.only(top: 20.0),
           child: StreamBuilder(
               stream:
                   FirebaseFirestore.instance.collection('Reports').snapshots(),
@@ -34,35 +35,38 @@ class _SubmittedReportsState extends State<SubmittedReports> {
                     ? ListView.builder(
                         itemCount: snapshot.data?.docs.length,
                         itemBuilder: (content, index) {
-                          DocumentSnapshot ds = snapshot.data!.docs[index];
-                          return Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 10),
-                            child: Card(
-                                child: Container(
-                              // width: width * 8,
-                              height: 60,
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    vertical: 10, horizontal: 10),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [Text(ds["Name"]), Text(ds["Fault Type"])],
-                                    ),
-                                    Text(ds["location"])
-                                  ],
-                                ),
-                              ),
-                            )),
-                          );
+                          ReportModel model = ReportModel.fromJson(
+                              snapshot.data!.docs[index].data());
+                          return reportCard(model);
                         })
                     : const Center(
                         child: Text("No Reports Yet"),
                       );
               }),
         ));
+  }
+
+  Padding reportCard(ReportModel model) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10),
+      child: Card(
+          child: SizedBox(
+        // width: width * 8,
+        height: 60,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [Text(model.userName ?? ""), Text(model.faultType ?? "")],
+              ),
+              Text(model.location ?? "")
+            ],
+          ),
+        ),
+      )),
+    );
   }
 }
