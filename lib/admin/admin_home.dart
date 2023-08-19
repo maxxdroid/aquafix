@@ -48,7 +48,7 @@ class _HomePageState extends State<AdminHome> {
             pageController.jumpToPage(index);
           }),
           items: const [
-            BottomNavigationBarItem(icon: Icon(Icons.report_rounded), label: 'Repets'),
+            BottomNavigationBarItem(icon: Icon(Icons.report_rounded), label: 'Reports'),
             BottomNavigationBarItem(icon: Icon(Icons.person_3_outlined), label: 'Users'),
           ],
         ),
