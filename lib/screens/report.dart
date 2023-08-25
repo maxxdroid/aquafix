@@ -150,9 +150,7 @@ class _ReportState extends State<Report> {
               child: TextFormField(
                 controller: _phoneNumber,
                 decoration: const InputDecoration(
-                  prefix: Text("  +233"),
-                  labelText: "Phone Number"
-                  ),
+                    prefix: Text("  +233"), labelText: "Phone Number"),
                 validator: (value) {
                   if (value!.isEmpty) {
                     return 'Enter a valid Phone Number';
@@ -202,7 +200,7 @@ class _ReportState extends State<Report> {
                   final FormState? form = _formKey.currentState;
                   if (form!.validate()) {
                     Map<String, dynamic> userReportMap = {
-                      "Fault Type" : widget.title,
+                      "Fault Type": widget.title,
                       "Name": _name.text.toString(),
                       "location": _location.text.toString(),
                       "Description": _details.text.toString(),
@@ -219,8 +217,35 @@ class _ReportState extends State<Report> {
                         });
 
                     await DataBaseMethods()
-                        .addUserReportInfoToDob(userReportMap)
-                        .then((value) {Navigator.pop(context); Navigator.pop(context);});
+                        .addUserReport(userReportMap)
+                        .then((value) {
+                      Navigator.pop(context);
+                      Navigator.pop(context);
+                    });
+                  } else if (form.validate() && _pic.path.isNotEmpty) {
+                    Map<String, dynamic> userReportMap = {
+                      "Fault Type": widget.title,
+                      "Name": _name.text.toString(),
+                      "location": _location.text.toString(),
+                      "Description": _details.text.toString(),
+                      "Phone Number": _phoneNumber.text.toString(),
+                      "Date": DateTime.now().toString(),
+                    };
+
+                    showDialog(
+                        context: context,
+                        builder: (_) {
+                          return const LoadingAlert(
+                            message: 'Sending Report please wait...',
+                          );
+                        });
+
+                    await DataBaseMethods()
+                        .addUserReportWithImage(userReportMap, _pic)
+                        .then((value) {
+                      Navigator.pop(context);
+                      Navigator.pop(context);
+                    });
                   }
                   // Navigator.pop(context);
                 },

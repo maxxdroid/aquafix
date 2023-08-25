@@ -1,8 +1,7 @@
 import 'package:aquafix/admin/admin_home.dart';
 import 'package:aquafix/database/database.dart';
 import 'package:aquafix/widgets/loading_alert.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-// import 'package:firebase_core/firebase_core.dart';
+import 'package:cloud_firestore/cloud_firestore.dart'; 
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';

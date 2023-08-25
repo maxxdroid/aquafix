@@ -5,6 +5,7 @@ class ReportModel {
   String? date;
   String? userName;
   String? userPhoneNumber;
+  String? faultImage;
 
   ReportModel({
     this.faultType,
@@ -13,6 +14,7 @@ class ReportModel {
     this.date,
     this.userName,
     this.userPhoneNumber,
+    this.faultImage,
   });
 
   ReportModel.fromJson(Map<String, dynamic>json){
@@ -22,6 +24,7 @@ class ReportModel {
     date = json["Date"];
     userName = json["Name"];
     userPhoneNumber = json["Phone Number"];
+    faultImage = json["Fault Image"];
   }
 
   Map<String, dynamic>?toJson() {
@@ -32,6 +35,7 @@ class ReportModel {
     data["Date"] = date;
     data["Name"] = userName;
     data["Phone Number"] = userPhoneNumber;
+    data["Fault Image"] = faultImage;
     return data;
   }
 }
