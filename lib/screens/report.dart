@@ -198,7 +198,7 @@ class _ReportState extends State<Report> {
               child: ElevatedButton(
                 onPressed: () async {
                   final FormState? form = _formKey.currentState;
-                  if (form!.validate()) {
+                  if (form!.validate() & _pic.path.isEmpty) {
                     Map<String, dynamic> userReportMap = {
                       "Fault Type": widget.title,
                       "Name": _name.text.toString(),
@@ -222,7 +222,7 @@ class _ReportState extends State<Report> {
                       Navigator.pop(context);
                       Navigator.pop(context);
                     });
-                  } else if (form.validate() && _pic.path.isNotEmpty) {
+                  } else if (form.validate() & _pic.path.isNotEmpty) {
                     Map<String, dynamic> userReportMap = {
                       "Fault Type": widget.title,
                       "Name": _name.text.toString(),
@@ -242,7 +242,7 @@ class _ReportState extends State<Report> {
 
                     await DataBaseMethods()
                         .addUserReportWithImage(userReportMap, _pic)
-                        .then((value) {
+                        .whenComplete(() {
                       Navigator.pop(context);
                       Navigator.pop(context);
                     });

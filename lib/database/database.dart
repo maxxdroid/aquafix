@@ -12,13 +12,6 @@ class DataBaseMethods {
         .set(userInfoMap);
   }
 
-  uploadimage(faultImage, String dVariable) async {
-    final Reference reference = FirebaseStorage.instance.ref().child('items');
-    UploadTask storageUploadTask = reference.child('product_$dVariable .jpg').putFile(faultImage);
-    TaskSnapshot taskSnapshot = await storageUploadTask;
-    String downloadurl = await taskSnapshot.ref.getDownloadURL();
-    return downloadurl;
-  }
 
   Future addUserReport (Map<String, dynamic> userReportMap) async {
     String dVariable = DateTime.now().microsecondsSinceEpoch.toString();
@@ -30,12 +23,23 @@ class DataBaseMethods {
 
   Future addUserReportWithImage(Map<String, dynamic> userReportMap, File faultImage) async {
     String dVariable = DateTime.now().microsecondsSinceEpoch.toString();
-    String url = uploadimage(faultImage, dVariable);
-    userReportMap["Image Url"] = url;
-    return FirebaseFirestore.instance
+    String ? downloadurl;
+    uploadimage(faultImage, String dVariable) async {
+    final Reference reference = FirebaseStorage.instance.ref().child('items');
+    UploadTask storageUploadTask = reference.child('product_$dVariable .jpg').putFile(faultImage);
+    TaskSnapshot taskSnapshot = await storageUploadTask;
+    downloadurl = await taskSnapshot.ref.getDownloadURL();
+     userReportMap["Image Url"] = downloadurl;
+    print("......................Y....................Uploading image");
+  }
+    // String url = uploadimage(faultImage, dVariable);
+
+    uploadimage(faultImage, dVariable).whenComplete(()  {
+      return FirebaseFirestore.instance
         .collection("Reports")
         .doc(dVariable)
         .set(userReportMap);
+    });
   }
 
   Future<Stream<QuerySnapshot>> getChatroomMessages(userID) async {
