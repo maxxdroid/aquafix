@@ -114,7 +114,7 @@ class _MeterVerificationState extends State<MeterVerification> {
       floatingActionButton: ElevatedButton(
         onPressed: () {
           // Navigator.pushNamed(context, "home");
-          AuthMethods().signUpWithEmailandPassword(widget.meterNum, widget.password, widget.password, context);
+          AuthMethods().signUpWithEmailandPassword(widget.meterNum, widget.password, widget.password, context, _pic);
         },
         style: ElevatedButton.styleFrom(
             foregroundColor: Colors.purple, backgroundColor: Colors.lightBlue),

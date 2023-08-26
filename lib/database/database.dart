@@ -5,7 +5,19 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 
 class DataBaseMethods {
-  Future addUserInfoToDob(String userId, Map<String, dynamic> userInfoMap) {
+  Future addUserInfoToDob(String userId, Map<String, dynamic> userInfoMap, File meterImage) {
+    String dVariable = DateTime.now().microsecondsSinceEpoch.toString();
+    String ? downloadurl;
+    uploadimage(meterImage, String dVariable) async {
+    final Reference reference = FirebaseStorage.instance.ref().child('items');
+    UploadTask storageUploadTask = reference.child('product_$dVariable .jpg').putFile(meterImage);
+    TaskSnapshot taskSnapshot = await storageUploadTask;
+    downloadurl = await taskSnapshot.ref.getDownloadURL();
+     userInfoMap["Image Url"] = downloadurl;
+    print("......................Y....................Uploading image");
+  }
+
+  uploadimage(meterImage, dVariable);
     return FirebaseFirestore.instance
         .collection("users")
         .doc(userId)

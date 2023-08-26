@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:aquafix/admin/admin_home.dart';
 import 'package:aquafix/database/database.dart';
 import 'package:aquafix/widgets/loading_alert.dart';
@@ -38,7 +40,7 @@ class AuthMethods {
   }
 
   signUpWithEmailandPassword(String meterNum, String password, String name,
-      BuildContext context) async {
+      BuildContext context, File meterImage) async {
     String mail = "$meterNum@gmail.com";
 
     late User? firebaseUser;
@@ -71,7 +73,7 @@ class AuthMethods {
       };
 
       DataBaseMethods()
-          .addUserInfoToDob(firebaseUser!.uid, userInfoMap)
+          .addUserInfoToDob(firebaseUser!.uid, userInfoMap, meterImage)
           .then((value) {
         Navigator.of(context).popUntil((route) => route.isFirst);
         Navigator.pushReplacementNamed(context, "home");

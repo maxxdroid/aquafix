@@ -1,15 +1,15 @@
 import 'package:aquafix/models/report_model.dart';
 import 'package:flutter/material.dart';
 
-class ReportDetails extends StatefulWidget {
+class UserDetails extends StatefulWidget {
   final ReportModel model;
-  const ReportDetails({super.key, required this.model});
+  const UserDetails({super.key, required this.model});
 
   @override
-  State<ReportDetails> createState() => _ReportDetailsState();
+  State<UserDetails> createState() => _ReportDetailsState();
 }
 
-class _ReportDetailsState extends State<ReportDetails> {
+class _ReportDetailsState extends State<UserDetails> {
   ReportModel? model;
 
   @override
