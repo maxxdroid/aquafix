@@ -17,7 +17,7 @@ class _SubmittedReportsState extends State<AdminUserControl> {
     return Scaffold(
         appBar: AppBar(
           title: const Text(
-            "User Reports",
+            "Users",
             style: TextStyle(
                 fontSize: 26,
                 fontWeight: FontWeight.bold,
@@ -59,7 +59,7 @@ class _SubmittedReportsState extends State<AdminUserControl> {
         child: Card(
             child: SizedBox(
           // width: width * 8,
-          height: 60,
+          height: 70,
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
             child: Row(
