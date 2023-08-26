@@ -24,7 +24,7 @@ class ReportModel {
     date = json["Date"];
     userName = json["Name"];
     userPhoneNumber = json["Phone Number"];
-    faultImage = json["Fault Image"];
+    faultImage = json["Image Url"];
   }
 
   Map<String, dynamic>?toJson() {

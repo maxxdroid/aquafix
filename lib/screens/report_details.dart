@@ -18,17 +18,45 @@ class _ReportDetailsState extends State<ReportDetails> {
     model = widget.model;
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title:  Text(model!.faultType ?? ""),
+        title: Text(
+          model!.faultType ?? "",
+          style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+        ),
         centerTitle: true,
       ),
-      body:  SingleChildScrollView(
-        child: Container(),
-      ),
+      body: SingleChildScrollView(
+          child: Center(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(top: 30),
+              child: Image.network(model!.faultImage ?? ""),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 30),
+              child: Text(
+                model!.location ?? "",
+                style:
+                    const TextStyle(fontSize: 18,  ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 30),
+              child: Text(
+                model!.description ?? "",
+                style:
+                    const TextStyle(fontSize: 18,  ),
+              ),
+            )
+          ],
+        ),
+      )),
     );
   }
 }
