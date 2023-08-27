@@ -21,81 +21,75 @@ class _ReportDetailsState extends State<UserDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          model!.userId ?? "",
-          style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+        appBar: AppBar(
+          title: Text(
+            model!.userName ?? "",
+            style: const TextStyle(
+                fontSize: 25, fontWeight: FontWeight.bold, color: Colors.black),
+          ),
+          centerTitle: true,
         ),
-        centerTitle: true,
-      ),
-      body: SingleChildScrollView( 
-        child: Column(
-          // crossAxisAlignment: CrossAxisAlignment.center,
-          // mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 30,),
-              child: Image.network(model!.userImage ?? ""),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 30, left: 20),
-              child: Row(
-                children: [
-                  const Text("Location: ", style:
-                        TextStyle(fontSize: 18,  ),),
-                  Text(
-                    model!.location ?? "",
-                    style:
-                        const TextStyle(fontSize: 18,  ),
-                  ),
-                ],
+        body: SingleChildScrollView(
+          child: Column(
+            // crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(
+                  top: 30,
+                ),
+                child: Image.network(model!.userImage ?? ""),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 20, left: 20),
-              child: Row(
-                children: [
-                  const Text("Date: ", style:
-                        TextStyle(fontSize: 18,  ),),
-                  Text(
-                    model!.userName ?? "",
-                    style:
-                        const TextStyle(fontSize: 18,  ),
-                  ),
-                ],
+              Padding(
+                padding: const EdgeInsets.only(top: 30, left: 20),
+                child: Row(
+                  children: [
+                    const Text(
+                      "User Id: ",
+                      style: TextStyle(
+                        fontSize: 18,
+                      ),
+                    ),
+                    Text(
+                      model!.userId ?? "",
+                      style: const TextStyle(
+                        fontSize: 18,
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 20, left: 20),
-              child: Row(
-                children: [
-                  const Text("Phone number: 0", style:
-                        TextStyle(fontSize: 18,  ),),
-                  Text(
-                    model!.userPhoneNumber ?? "",
-                    style:
-                        const TextStyle(fontSize: 18,  ),
-                  ),
-                ],
+              Padding(
+                padding: const EdgeInsets.only(top: 20, left: 20),
+                child: Row(
+                  children: [
+                    const Text(
+                      "Meter Number: ",
+                      style: TextStyle(
+                        fontSize: 18,
+                      ),
+                    ),
+                    Text(
+                      model!.meterNumber ?? "",
+                      style: const TextStyle(
+                        fontSize: 18,
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 20, left: 20),
-              child: Column(
-                children: [
-                  const Text("Description: ", style:
-                        TextStyle(fontSize: 18,  ),),
-                  Text(
-                    model!.userPhoneNumber ?? "",
-                    style:
-                        const TextStyle(fontSize: 18,  ),
+              Padding(
+                padding: const EdgeInsets.only(top: 20, left: 20),
+                child: Text(
+                  "Reports from ${model!.userName}",
+                  style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600
                   ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ) 
-    );
+                ),
+              )
+            ],
+          ),
+        ));
   }
 }

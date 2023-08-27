@@ -16,7 +16,7 @@ class UserModel {
   });
 
   UserModel.fromJson(Map<String, dynamic>json){
-    userId = json["Fault Type"];
+    userId = json["User Id"];
     location = json["location"];
     meterNumber = json["Meter Number"];
     userName = json["Name"];
@@ -31,7 +31,7 @@ class UserModel {
     data["Meter Number"] = meterNumber;
     data["Name"] = userName;
     data["Phone Number"] = userPhoneNumber;
-    data["Fault Image"] = userImage;
+    data["Image Url"] = userImage;
     return data;
   }
 }
