@@ -69,15 +69,12 @@ class AuthMethods {
         "Email": mail,
         "Name": name,
         "imgUrl": "",
-        "Meter Number": meterNum
+        "Meter Number": meterNum,
+        "User Id" : firebaseUser!.uid,
       };
 
       DataBaseMethods()
-          .addUserInfoToDob(firebaseUser!.uid, userInfoMap, meterImage)
-          .then((value) {
-        Navigator.of(context).popUntil((route) => route.isFirst);
-        Navigator.pushReplacementNamed(context, "home");
-      });
+          .addUserInfoToDob(firebaseUser!.uid, userInfoMap, meterImage, context);
     }).onError((error, stackTrace) {
       // signUpErrorHandling(error.toString());
     });

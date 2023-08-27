@@ -116,7 +116,7 @@ class _MeterVerificationState extends State<MeterVerification> {
         onPressed: () {
           // Navigator.pushNamed(context, "home");
           if(_pic!.path.isNotEmpty) {
-            AuthMethods().signUpWithEmailandPassword(widget.meterNum, widget.password, widget.password, context, _pic!);
+            AuthMethods().signUpWithEmailandPassword(widget.meterNum, widget.password, widget.metername, context, _pic!);
           } else {
             print(".....................................QQ............");
             Fluttertoast.showToast(msg: "Please add an image.");
