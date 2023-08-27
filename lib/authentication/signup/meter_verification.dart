@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:aquafix/authentication/auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
 
 class MeterVerification extends StatefulWidget {
@@ -15,7 +16,7 @@ class MeterVerification extends StatefulWidget {
 
 class _MeterVerificationState extends State<MeterVerification> {
   bool imageSelected = false;
-  late File _pic;
+  File? _pic;
   final picker = ImagePicker();
 
   Future _selectFromGallery() async{
@@ -97,7 +98,7 @@ class _MeterVerificationState extends State<MeterVerification> {
                     //   radius: width * 0.5,
                     //   backgroundImage: FileImage(_pic),
                     // ),
-                    child: Image.file(_pic),
+                    child: Image.file(_pic!),
                    )
                   :
                   IconButton(
@@ -114,7 +115,12 @@ class _MeterVerificationState extends State<MeterVerification> {
       floatingActionButton: ElevatedButton(
         onPressed: () {
           // Navigator.pushNamed(context, "home");
-          AuthMethods().signUpWithEmailandPassword(widget.meterNum, widget.password, widget.password, context, _pic);
+          if(_pic!.path.isNotEmpty) {
+            AuthMethods().signUpWithEmailandPassword(widget.meterNum, widget.password, widget.password, context, _pic!);
+          } else {
+            print(".....................................QQ............");
+            Fluttertoast.showToast(msg: "Please add an image.");
+          }
         },
         style: ElevatedButton.styleFrom(
             foregroundColor: Colors.purple, backgroundColor: Colors.lightBlue),

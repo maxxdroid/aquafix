@@ -1,8 +1,8 @@
-import 'package:aquafix/models/report_model.dart';
+import 'package:aquafix/models/users_model.dart';
 import 'package:flutter/material.dart';
 
 class UserDetails extends StatefulWidget {
-  final ReportModel model;
+  final UserModel model;
   const UserDetails({super.key, required this.model});
 
   @override
@@ -10,7 +10,7 @@ class UserDetails extends StatefulWidget {
 }
 
 class _ReportDetailsState extends State<UserDetails> {
-  ReportModel? model;
+  UserModel? model;
 
   @override
   void initState() {
@@ -23,7 +23,7 @@ class _ReportDetailsState extends State<UserDetails> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          model!.faultType ?? "",
+          model!.userId ?? "",
           style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
@@ -35,7 +35,7 @@ class _ReportDetailsState extends State<UserDetails> {
           children: [
             Padding(
               padding: const EdgeInsets.only(top: 30,),
-              child: Image.network(model!.faultImage ?? ""),
+              child: Image.network(model!.userImage ?? ""),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 30, left: 20),
@@ -58,7 +58,7 @@ class _ReportDetailsState extends State<UserDetails> {
                   const Text("Date: ", style:
                         TextStyle(fontSize: 18,  ),),
                   Text(
-                    model!.date ?? "",
+                    model!.userName ?? "",
                     style:
                         const TextStyle(fontSize: 18,  ),
                   ),
@@ -86,7 +86,7 @@ class _ReportDetailsState extends State<UserDetails> {
                   const Text("Description: ", style:
                         TextStyle(fontSize: 18,  ),),
                   Text(
-                    model!.description ?? "",
+                    model!.userPhoneNumber ?? "",
                     style:
                         const TextStyle(fontSize: 18,  ),
                   ),

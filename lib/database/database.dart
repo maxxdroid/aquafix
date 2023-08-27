@@ -5,7 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 
 class DataBaseMethods {
-  Future addUserInfoToDob(String userId, Map<String, dynamic> userInfoMap, File meterImage) {
+  addUserInfoToDob(String userId, Map<String, dynamic> userInfoMap, File meterImage) {
     String dVariable = DateTime.now().microsecondsSinceEpoch.toString();
     String ? downloadurl;
     uploadimage(meterImage, String dVariable) async {
@@ -17,11 +17,12 @@ class DataBaseMethods {
     print("......................Y....................Uploading image");
   }
 
-  uploadimage(meterImage, dVariable);
+  uploadimage(meterImage, dVariable).whenComplete(() {
     return FirebaseFirestore.instance
         .collection("users")
         .doc(userId)
         .set(userInfoMap);
+  });
   }
 
 

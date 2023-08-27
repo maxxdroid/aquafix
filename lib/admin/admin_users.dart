@@ -1,5 +1,5 @@
-import 'package:aquafix/admin/admin_report_details.dart';
-import 'package:aquafix/models/report_model.dart';
+import 'package:aquafix/admin/user_details.dart';
+import 'package:aquafix/models/users_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -36,7 +36,7 @@ class _SubmittedReportsState extends State<AdminUserControl> {
                     ? ListView.builder(
                         itemCount: snapshot.data?.docs.length,
                         itemBuilder: (content, index) {
-                          ReportModel model = ReportModel.fromJson(
+                          UserModel model = UserModel.fromJson(
                               snapshot.data!.docs[index].data());
                           return reportCard(model, content);
                         })
@@ -47,11 +47,11 @@ class _SubmittedReportsState extends State<AdminUserControl> {
         ));
   }
 
-  reportCard(ReportModel model, BuildContext context) {
+  reportCard(UserModel model, BuildContext context) {
     return InkWell(
       onTap: () {
         Route route =
-            MaterialPageRoute(builder: (c) => AdminReportDetails(model: model));
+            MaterialPageRoute(builder: (c) => UserDetails(model: model));
         Navigator.push(context, route);
       },
       child: Padding(
@@ -69,7 +69,7 @@ class _SubmittedReportsState extends State<AdminUserControl> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(model.userName ?? ""),
-                    Text(model.faultType ?? "")
+                    // Text(model.faultType ?? "")
                   ],
                 ),
                 Text(model.location ?? "")
