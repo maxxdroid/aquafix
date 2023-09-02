@@ -2,6 +2,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'authentication/auth.dart';
 
+String id = "";
+
 class Screen extends StatefulWidget {
   const Screen({super.key});
 
@@ -10,15 +12,20 @@ class Screen extends StatefulWidget {
 }
 
 class _ScreenState extends State<Screen> {
+
+
   displaySplash() {
     Timer(const Duration(seconds: 3), () async {
       if (AuthMethods().auth.currentUser != null) {
         Navigator.pushReplacementNamed(context, "home");
+        id = AuthMethods().auth.currentUser!.uid;
+        // print("...............................$id");
       } else {
         Navigator.pushReplacementNamed(context, "signIn");
       }
     });
   }
+
 
   @override
   void initState() {
@@ -44,3 +51,7 @@ class _ScreenState extends State<Screen> {
     );
   }
 }
+
+ getId() {
+    return id;
+  }

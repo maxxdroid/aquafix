@@ -2,6 +2,7 @@ import 'package:aquafix/models/report_model.dart';
 import 'package:aquafix/screens/report_details.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import '../screen.dart';
 
 class SubmittedReports extends StatefulWidget {
   const SubmittedReports({super.key});
@@ -11,6 +12,9 @@ class SubmittedReports extends StatefulWidget {
 }
 
 class _SubmittedReportsState extends State<SubmittedReports> {
+
+  String id = getId();
+
   @override
   Widget build(BuildContext context) {
     // var width = MediaQuery.of(context).size.width;
@@ -30,7 +34,7 @@ class _SubmittedReportsState extends State<SubmittedReports> {
           padding: const EdgeInsets.only(top: 20.0),
           child: StreamBuilder(
               stream:
-                  FirebaseFirestore.instance.collection('Reports').snapshots(),
+                  FirebaseFirestore.instance.collection("users").doc(id).collection("reports").snapshots(),
               builder: (context, snapshot) {
                 return snapshot.hasData
                     ? ListView.builder(
@@ -43,8 +47,10 @@ class _SubmittedReportsState extends State<SubmittedReports> {
                     : const Center(
                         child: Text("No Reports Yet"),
                       );
-              }),
-        ));
+              }
+              ),
+        )
+        );
   }
 
   reportCard(ReportModel model, BuildContext context) {
