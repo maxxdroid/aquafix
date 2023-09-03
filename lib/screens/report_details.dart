@@ -1,3 +1,4 @@
+import 'package:aquafix/maps/gmap.dart';
 import 'package:aquafix/models/report_model.dart';
 import 'package:flutter/material.dart';
 
@@ -33,23 +34,11 @@ class _ReportDetailsState extends State<ReportDetails> {
           // crossAxisAlignment: CrossAxisAlignment.center,
           // mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 30,),
-              child: Image.network(model!.faultImage ?? ""),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 30, left: 20),
-              child: Row(
-                children: [
-                  const Text("Location: ", style:
-                        TextStyle(fontSize: 18,  ),),
-                  Text(
-                    model!.location ?? "",
-                    style:
-                        const TextStyle(fontSize: 18,  ),
-                  ),
-                ],
-              ),
+            Container(
+              // height: 400,
+              width: 1000,
+              padding: const EdgeInsets.only(top: 30, left: 10, right: 10),
+              child: Image.network(model!.faultImage ?? "" , fit: BoxFit.fitWidth),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 20, left: 20),
@@ -80,8 +69,28 @@ class _ReportDetailsState extends State<ReportDetails> {
               ),
             ),
             Padding(
+              padding: const EdgeInsets.only(top: 30, left: 20),
+              child: Row(
+                children: [
+                  const Text("Location:     ", style:
+                        TextStyle(fontSize: 18, fontWeight: FontWeight.w400),),
+                  Text(
+                    model!.location ?? "",
+                    style:
+                        const TextStyle(fontSize: 18,  ),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              height: 300,
+              child: const FaultLocation(),
+            ),
+            Padding(
               padding: const EdgeInsets.only(top: 20, left: 20),
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   const Text("Description: ", style:
                         TextStyle(fontSize: 18,  ),),

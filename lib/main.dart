@@ -3,6 +3,7 @@ import './authentication/login.dart';
 import 'package:firebase_core/firebase_core.dart';
 import './screens/home.dart';
 import './authentication/signup/create_account.dart';
+// import './maps/gmap.dart';
 import './screen.dart';
 // import './authentication/signup/meter_verification.dart';
 
@@ -33,6 +34,7 @@ class MyApp extends StatelessWidget {
         // fontFamily: 'Roboto',
       ),
       home: const Screen(),
+      // home: const GMap(),
       debugShowCheckedModeBanner: false,
     );
   }
