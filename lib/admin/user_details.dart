@@ -38,13 +38,14 @@ class _ReportDetailsState extends State<UserDetails> {
         body: SingleChildScrollView(
           child: Column(
             // crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.start,
+            // mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Padding(
+              Container(
+                height: 400,
                 padding: const EdgeInsets.only(
                   top: 30,
                 ),
-                child: Image.network(model!.userImage ?? ""),
+                child: Image.network(model!.userImage ?? "", fit: BoxFit.fitHeight,),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 30, left: 20),

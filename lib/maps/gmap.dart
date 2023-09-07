@@ -9,12 +9,25 @@ class FaultLocation extends StatefulWidget {
 }
 
 class _FaultLocationState extends State<FaultLocation> {
-  static const double _defaultlang =  7.946527;
-  static const double _defaultlong = -1.0231939999999895;
+  static const double _defaultlang =  40.7128;
+  static const double _defaultlong = -74.0060;
   static const CameraPosition _defaultlocation = CameraPosition(target: LatLng(_defaultlang, _defaultlong), zoom: 16);
+  // ignore: unused_field
   late final GoogleMapController _googleMapController;
   MapType _currentMapType = MapType.normal;
   final Set<Marker> _markers = {};
+
+  List <Marker> myMarker = [];
+
+  _handletap (LatLng tapedpoint) {
+    myMarker = [];
+    myMarker.add(
+      Marker(
+        markerId: MarkerId(tapedpoint.toString()),
+        position: tapedpoint
+      ),
+    );
+  }
 
   void _changeMapType() {
     setState(() {
@@ -31,7 +44,7 @@ class _FaultLocationState extends State<FaultLocation> {
           icon: BitmapDescriptor.defaultMarker,
           infoWindow: const InfoWindow(
             title: "Fault Location",
-            snippet: ""
+            snippet: "",
           )
           )
       );
@@ -44,7 +57,9 @@ class _FaultLocationState extends State<FaultLocation> {
       children: [
         GoogleMap(
           onMapCreated: (controller) => _googleMapController = controller,
-          initialCameraPosition: _defaultlocation, mapType: _currentMapType, markers: _markers,) ,
+          initialCameraPosition: _defaultlocation,
+          onTap: _handletap,
+           mapType: _currentMapType, markers: Set.from(myMarker),) ,
         Container(
           padding: const EdgeInsets.only(top:24, right: 24),
           child: Column(
