@@ -9,21 +9,37 @@ class UserAddMap extends StatefulWidget {
 }
 
 class _UserAddMapState extends State<UserAddMap> {
-  static const double _defaultlang =  40.7128;
-  static const double _defaultlong = -74.0060;
+  static const double _defaultlang =  5.590425;
+  static const double _defaultlong = -0.202665;
   late final GoogleMapController _googleMapController;
-  static const CameraPosition _defaultlocation = CameraPosition(target: LatLng(_defaultlang, _defaultlong), zoom: 16);
+  static const CameraPosition _defaultlocation = CameraPosition(target: LatLng(_defaultlang, _defaultlong), zoom: 20);
 
   List <Marker> myMarker = [];
 
   @override
   Widget build(BuildContext context) {
     return GoogleMap(
+      mapType: MapType.hybrid,
           onMapCreated: (controller) => _googleMapController = controller,
           initialCameraPosition: _defaultlocation,
-          // onTap: _handletap,
+          onTap: _handletap,
           //  mapType: _currentMapType,
            markers: Set.from(myMarker),
       );
+  }
+
+  _handletap (LatLng tapedpoint) {
+    setState(() {
+      myMarker = [];
+      myMarker.add(
+        Marker(
+          markerId: MarkerId(tapedpoint.toString()),
+          position: tapedpoint, 
+          draggable: true,
+          icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueAzure),
+        )
+      );
+    });
+    print(tapedpoint.toJson());
   }
 }

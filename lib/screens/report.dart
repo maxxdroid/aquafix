@@ -1,8 +1,7 @@
 import 'dart:io';
 
 import 'package:aquafix/database/database.dart';
-import 'package:aquafix/maps/map_snippet.dart';
-import 'package:aquafix/maps/user_add_map.dart';
+import 'package:aquafix/maps/map_snippet.dart'; 
 import 'package:aquafix/widgets/loading_alert.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -152,7 +151,7 @@ class _ReportState extends State<Report> {
             const Padding(
                 padding:
                     EdgeInsets.only(top: 30, bottom: 10, left: 15, right: 15),
-                child: Text("Add the location of the fault")),
+                child: Text("Tap to add the location")),
             Container(
               height: 300,
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
