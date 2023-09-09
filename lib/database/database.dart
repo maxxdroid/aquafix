@@ -17,7 +17,7 @@ class DataBaseMethods {
       TaskSnapshot taskSnapshot = await storageUploadTask;
       downloadurl = await taskSnapshot.ref.getDownloadURL();
       userInfoMap["Image Url"] = downloadurl;
-      print("......................Y....................Uploading image");
+      // print("......................Y....................Uploading image");
     }
 
     uploadimage(meterImage, dVariable).whenComplete(() {
@@ -65,7 +65,7 @@ class DataBaseMethods {
       TaskSnapshot taskSnapshot = await storageUploadTask;
       downloadurl = await taskSnapshot.ref.getDownloadURL();
       userReportMap["Image Url"] = downloadurl;
-      print("......................Y....................Uploading image");
+      // print("......................Y....................Uploading image");
     }
     // String url = uploadimage(faultImage, dVariable);
     String id = getId();
@@ -76,7 +76,7 @@ class DataBaseMethods {
         .collection("reports")
         .doc(dVariable)
         .set(userReportMap).whenComplete(() {
-          print(".............................$id...............");
+          // print(".............................$id...............");
         });
       FirebaseFirestore.instance
         .collection("Reports")

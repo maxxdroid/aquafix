@@ -118,7 +118,7 @@ class _MeterVerificationState extends State<MeterVerification> {
           if(_pic!.path.isNotEmpty) {
             AuthMethods().signUpWithEmailandPassword(widget.meterNum, widget.password, widget.metername, context, _pic!);
           } else {
-            print(".....................................QQ............");
+            // print(".....................................QQ............");
             Fluttertoast.showToast(msg: "Please add an image.");
           }
         },

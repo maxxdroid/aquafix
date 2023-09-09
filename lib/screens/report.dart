@@ -1,6 +1,8 @@
 import 'dart:io';
 
 import 'package:aquafix/database/database.dart';
+import 'package:aquafix/maps/map_snippet.dart';
+import 'package:aquafix/maps/user_add_map.dart';
 import 'package:aquafix/widgets/loading_alert.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -133,21 +135,6 @@ class _ReportState extends State<Report> {
               padding: const EdgeInsets.only(
                   top: 30, bottom: 10, left: 15, right: 15),
               child: TextFormField(
-                controller: _location,
-                decoration: const InputDecoration(labelText: "Location"),
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Enter the Location';
-                  } else {
-                    return null;
-                  }
-                },
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(
-                  top: 30, bottom: 10, left: 15, right: 15),
-              child: TextFormField(
                 controller: _phoneNumber,
                 decoration: const InputDecoration(
                     prefix: Text("  +233"), labelText: "Phone Number"),
@@ -161,6 +148,15 @@ class _ReportState extends State<Report> {
                   }
                 },
               ),
+            ),
+            const Padding(
+                padding:
+                    EdgeInsets.only(top: 30, bottom: 10, left: 15, right: 15),
+                child: Text("Add the location of the fault")),
+            Container(
+              height: 300,
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              child: const MapSnippet(),
             ),
             Padding(
                 padding: const EdgeInsets.only(top: 45.0, left: 15, right: 15),

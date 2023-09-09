@@ -59,7 +59,7 @@ class _FaultLocationState extends State<FaultLocation> {
           onMapCreated: (controller) => _googleMapController = controller,
           initialCameraPosition: _defaultlocation,
           onTap: _handletap,
-           mapType: _currentMapType, markers: Set.from(myMarker),) ,
+           mapType: _currentMapType, markers: Set.from(myMarker),),
         Container(
           padding: const EdgeInsets.only(top:24, right: 24),
           child: Column(
