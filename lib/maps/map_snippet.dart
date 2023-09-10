@@ -10,7 +10,18 @@ class MapSnippet extends StatefulWidget {
   State<MapSnippet> createState() => _MapSnipetState();
 }
 
+LatLng ? tapedpoint;
+bool isSelected = false;
+
+selectedmap(bool tapped, LatLng newtapedpoint) {
+  isSelected = tapped;
+  tapedpoint = newtapedpoint;
+}
+
 class _MapSnipetState extends State<MapSnippet> {
+
+  
+  
 
   static const double _defaultlang =  5.590425;
   static const double _defaultlong = -0.202665;
@@ -22,13 +33,15 @@ class _MapSnipetState extends State<MapSnippet> {
   @override
   Widget build(BuildContext context) {
     return GoogleMap(
+      zoomGesturesEnabled: true,
       mapType: MapType.hybrid,
           onMapCreated: (controller) => _googleMapController = controller,
-          initialCameraPosition: _defaultlocation,
+          initialCameraPosition:  isSelected ? CameraPosition(target: tapedpoint!): _defaultlocation,
           onTap: (_) {
             Route route =
                       MaterialPageRoute(builder: (c) => const UserAddMap());
                   Navigator.push(context, route);
+            print(tapedpoint.toString());
           },
           //  mapType: _currentMapType,
            markers: Set.from(myMarker),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+// import './map_snippet.dart';
+import '../screens/report.dart';
 
 class UserAddMap extends StatefulWidget {
   const UserAddMap({super.key});
@@ -40,6 +42,7 @@ class _UserAddMapState extends State<UserAddMap> {
         )
       );
     });
-    print(tapedpoint.toJson());
+    // print(tapedpoint.toJson());
+    selectedmap(true, tapedpoint);
   }
 }

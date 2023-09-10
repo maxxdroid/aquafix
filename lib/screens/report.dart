@@ -1,9 +1,10 @@
 import 'dart:io';
 
 import 'package:aquafix/database/database.dart';
-import 'package:aquafix/maps/map_snippet.dart'; 
+import 'package:aquafix/maps/user_add_map.dart'; 
 import 'package:aquafix/widgets/loading_alert.dart';
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 
 class Report extends StatefulWidget {
@@ -15,12 +16,21 @@ class Report extends StatefulWidget {
   State<Report> createState() => _ReportState();
 }
 
+LatLng tapedpoint = const LatLng(5.590425, -0.202665);
+bool isSelected = false;
+
+selectedmap(bool tapped, LatLng newtapedpoint) {
+  isSelected = tapped;
+  tapedpoint = newtapedpoint;
+}
+
 class _ReportState extends State<Report> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _name = TextEditingController();
-  final TextEditingController _location = TextEditingController();
   final TextEditingController _details = TextEditingController();
   final TextEditingController _phoneNumber = TextEditingController();
+
+  final String _location = '';
 
   bool imageSelected = false;
   late File _pic;
@@ -155,7 +165,7 @@ class _ReportState extends State<Report> {
             Container(
               height: 300,
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              child: const MapSnippet(),
+              child: const UserAddMap(),
             ),
             Padding(
                 padding: const EdgeInsets.only(top: 45.0, left: 15, right: 15),
@@ -193,14 +203,17 @@ class _ReportState extends State<Report> {
               child: ElevatedButton(
                 onPressed: () async {
                   final FormState? form = _formKey.currentState;
+                  // print(".......${tapedpoint!.latitude.toString()}.....");
                   if (form!.validate() & _pic.path.isEmpty) {
                     Map<String, dynamic> userReportMap = {
                       "Fault Type": widget.title,
                       "Name": _name.text.toString(),
-                      "location": _location.text.toString(),
+                      "location": _location,
                       "Description": _details.text.toString(),
                       "Phone Number": _phoneNumber.text.toString(),
                       "Date": DateTime.now().toString(),
+                      "Lat" : tapedpoint.latitude.toString(),
+                      "Lng" : tapedpoint.longitude.toString(),
                     };
 
                     showDialog(
@@ -212,7 +225,7 @@ class _ReportState extends State<Report> {
                         });
 
                     await DataBaseMethods()
-                        .addUserReport(userReportMap)
+                        .addUserReport(userReportMap, tapedpoint)
                         .then((value) {
                       Navigator.pop(context);
                       Navigator.pop(context);
@@ -221,10 +234,12 @@ class _ReportState extends State<Report> {
                     Map<String, dynamic> userReportMap = {
                       "Fault Type": widget.title,
                       "Name": _name.text.toString(),
-                      "location": _location.text.toString(),
+                      "location": _location,
                       "Description": _details.text.toString(),
                       "Phone Number": _phoneNumber.text.toString(),
                       "Date": DateTime.now().toString(),
+                      "Lat" : tapedpoint.latitude.toString(),
+                      "Lng" : tapedpoint.longitude.toString(),
                     };
 
                     showDialog(
@@ -236,7 +251,7 @@ class _ReportState extends State<Report> {
                         });
 
                     await DataBaseMethods()
-                        .addUserReportWithImage(userReportMap, _pic)
+                        .addUserReportWithImage(userReportMap, _pic, tapedpoint)
                         .whenComplete(() {
                       Navigator.pop(context);
                       Navigator.pop(context);

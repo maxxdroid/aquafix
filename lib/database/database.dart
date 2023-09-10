@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:geocoding/geocoding.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import '../screen.dart';
 
 class DataBaseMethods {
@@ -30,9 +32,11 @@ class DataBaseMethods {
     });
   }
 
-  Future addUserReport(Map<String, dynamic> userReportMap) async {
+  Future addUserReport(Map<String, dynamic> userReportMap, LatLng tapedpoint) async {
     String dVariable = DateTime.now().microsecondsSinceEpoch.toString();
     String id = getId();
+    // List<Placemark> placemarks = await placemarkFromCoordinates(tapedpoint.latitude, tapedpoint.longitude);
+    // userReportMap["location"] = placemarks;
     storeData() {
       FirebaseFirestore.instance
         .collection("users")
@@ -55,9 +59,10 @@ class DataBaseMethods {
   }
 
   Future addUserReportWithImage(
-      Map<String, dynamic> userReportMap, File faultImage) async {
+      Map<String, dynamic> userReportMap, File faultImage, LatLng tapedpoint) async {
     String dVariable = DateTime.now().microsecondsSinceEpoch.toString();
     String? downloadurl;
+    // List<Placemark> placemarks = await placemarkFromCoordinates(tapedpoint.latitude, tapedpoint.longitude);
     uploadimage(faultImage, String dVariable) async {
       final Reference reference = FirebaseStorage.instance.ref().child('items');
       UploadTask storageUploadTask =
@@ -65,6 +70,7 @@ class DataBaseMethods {
       TaskSnapshot taskSnapshot = await storageUploadTask;
       downloadurl = await taskSnapshot.ref.getDownloadURL();
       userReportMap["Image Url"] = downloadurl;
+      // userReportMap["location"] = placemarks;
       // print("......................Y....................Uploading image");
     }
     // String url = uploadimage(faultImage, dVariable);
