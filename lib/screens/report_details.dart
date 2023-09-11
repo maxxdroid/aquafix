@@ -1,4 +1,5 @@
 import 'package:aquafix/maps/gmap.dart';
+import 'package:aquafix/maps/map_snippet.dart';
 import 'package:aquafix/models/report_model.dart';
 import 'package:flutter/material.dart';
 
@@ -9,6 +10,7 @@ class ReportDetails extends StatefulWidget {
   @override
   State<ReportDetails> createState() => _ReportDetailsState();
 }
+
 
 class _ReportDetailsState extends State<ReportDetails> {
   ReportModel? model;
@@ -21,6 +23,8 @@ class _ReportDetailsState extends State<ReportDetails> {
 
   @override
   Widget build(BuildContext context) {
+    var height = MediaQuery.of(context).size.height;
+    var width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -36,7 +40,8 @@ class _ReportDetailsState extends State<ReportDetails> {
           children: [
             Container(
               // height: 400,
-              width: 1000,
+              width: width,
+              height: height * 0.4,
               padding: const EdgeInsets.only(top: 30, left: 10, right: 10),
               child: Image.network(model!.faultImage ?? "" , fit: BoxFit.fitWidth),
             ),
@@ -85,7 +90,7 @@ class _ReportDetailsState extends State<ReportDetails> {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               height: 300,
-              child: const FaultLocation(),
+              child: const MapSnippet(),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 20, left: 20),

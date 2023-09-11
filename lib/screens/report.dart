@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:aquafix/database/database.dart';
+import 'package:aquafix/maps/map_snippet.dart';
 import 'package:aquafix/maps/user_add_map.dart'; 
 import 'package:aquafix/widgets/loading_alert.dart';
 import 'package:flutter/material.dart';
@@ -29,8 +30,11 @@ class _ReportState extends State<Report> {
   final TextEditingController _name = TextEditingController();
   final TextEditingController _details = TextEditingController();
   final TextEditingController _phoneNumber = TextEditingController();
+  final TextEditingController _location = TextEditingController();
 
-  final String _location = '';
+  // String check = locationcheck();
+
+  // final String _location = '';   
 
   bool imageSelected = false;
   late File _pic;
@@ -158,14 +162,29 @@ class _ReportState extends State<Report> {
                 },
               ),
             ),
+            Padding(
+              padding: const EdgeInsets.only(
+                  top: 30, bottom: 10, left: 15, right: 15),
+              child: TextFormField(
+                controller: _location,
+                decoration: const InputDecoration(labelText: "Location"),
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Enter your location';
+                  } else {
+                    return null;
+                  }
+                },
+              ),
+            ),
             const Padding(
                 padding:
                     EdgeInsets.only(top: 30, bottom: 10, left: 15, right: 15),
-                child: Text("Tap to add the location")),
+                child: Text("Tap to add the coordinates of the location")),
             Container(
               height: 300,
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              child: const UserAddMap(),
+              child: const MapSnippet(),
             ),
             Padding(
                 padding: const EdgeInsets.only(top: 45.0, left: 15, right: 15),
@@ -208,7 +227,7 @@ class _ReportState extends State<Report> {
                     Map<String, dynamic> userReportMap = {
                       "Fault Type": widget.title,
                       "Name": _name.text.toString(),
-                      "location": _location,
+                      "location": _location.text.toString(),
                       "Description": _details.text.toString(),
                       "Phone Number": _phoneNumber.text.toString(),
                       "Date": DateTime.now().toString(),
@@ -234,12 +253,12 @@ class _ReportState extends State<Report> {
                     Map<String, dynamic> userReportMap = {
                       "Fault Type": widget.title,
                       "Name": _name.text.toString(),
-                      "location": _location,
+                      "location": _location.text.toString(),
                       "Description": _details.text.toString(),
                       "Phone Number": _phoneNumber.text.toString(),
                       "Date": DateTime.now().toString(),
-                      "Lat" : tapedpoint.latitude.toString(),
-                      "Lng" : tapedpoint.longitude.toString(),
+                      "Lat" : post!.altitude.toString(),
+                      "Lng" : post!.longitude.toString(),
                     };
 
                     showDialog(
@@ -255,6 +274,10 @@ class _ReportState extends State<Report> {
                         .whenComplete(() {
                       Navigator.pop(context);
                       Navigator.pop(context);
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                content: Text("Report Submitted"),
+                duration: Duration(milliseconds: 300),
+              ));
                     });
                   }
                   // Navigator.pop(context);

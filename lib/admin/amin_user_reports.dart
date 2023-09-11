@@ -47,9 +47,9 @@ class _SubmittedUserReportsState extends State<SubmittedUserReports> {
   reportCard(ReportModel model, BuildContext context) {
     return InkWell(
       onTap: () {
-        Route route =
-            MaterialPageRoute(builder: (c) => ReportDetails(model: model));
-        Navigator.push(context, route);
+        // Route route =
+        //     MaterialPageRoute(builder: (c) => ReportDetails(model: model));
+        // Navigator.push(context, route);
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),
