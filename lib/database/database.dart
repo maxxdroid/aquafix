@@ -32,7 +32,7 @@ class DataBaseMethods {
     });
   }
 
-  Future addUserReport(Map<String, dynamic> userReportMap, LatLng tapedpoint) async {
+  Future addUserReport(Map<String, dynamic> userReportMap,) async {
     String dVariable = DateTime.now().microsecondsSinceEpoch.toString();
     String id = getId();
     // List<Placemark> placemarks = await placemarkFromCoordinates(tapedpoint.latitude, tapedpoint.longitude);
@@ -59,7 +59,7 @@ class DataBaseMethods {
   }
 
   Future addUserReportWithImage(
-      Map<String, dynamic> userReportMap, File faultImage, LatLng tapedpoint) async {
+      Map<String, dynamic> userReportMap, File faultImage,) async {
     String dVariable = DateTime.now().microsecondsSinceEpoch.toString();
     String? downloadurl;
     // List<Placemark> placemarks = await placemarkFromCoordinates(tapedpoint.latitude, tapedpoint.longitude);
@@ -73,7 +73,6 @@ class DataBaseMethods {
       // userReportMap["location"] = placemarks;
       // print("......................Y....................Uploading image");
     }
-    // String url = uploadimage(faultImage, dVariable);
     String id = getId();
     storeData() {
       FirebaseFirestore.instance
@@ -81,9 +80,7 @@ class DataBaseMethods {
         .doc(id)
         .collection("reports")
         .doc(dVariable)
-        .set(userReportMap).whenComplete(() {
-          // print(".............................$id...............");
-        });
+        .set(userReportMap);
       FirebaseFirestore.instance
         .collection("Reports")
         .doc(dVariable)

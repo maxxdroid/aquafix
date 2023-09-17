@@ -91,7 +91,10 @@ class _MapSnipetState extends State<MapSnippet> {
               Position position = await getUserLocation();
               print('...................${position.longitude}......');
               check = 'Coordinates Accessed';
-              post = position;
+              lat = position.latitude.toString();
+              lng = position.longitude.toString();
+              // post = position;
+              locationSelected = true;
               // _googleMapController.animateCamera(CameraUpdate.newCameraPosition(
               //     CameraPosition( zoom: 14,
               //         target: LatLng(position.latitude, position.longitude))));
@@ -110,4 +113,7 @@ class _MapSnipetState extends State<MapSnippet> {
 }
 
 Position ? post;
+String? lat;
+String? lng;
+bool locationSelected = false;
 // List<Placemark> placemarks = await placemarkFromCoordinates(52.2165157, 6.9437819);

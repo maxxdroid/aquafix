@@ -1,7 +1,9 @@
-import 'package:aquafix/maps/gmap.dart';
-import 'package:aquafix/maps/map_snippet.dart';
+// import 'package:aquafix/maps/gmap.dart';
+// import 'package:aquafix/maps/map_snippet.dart';
+import 'package:aquafix/maps/user_view_map.dart';
 import 'package:aquafix/models/report_model.dart';
 import 'package:flutter/material.dart';
+// import 'package:get/get.dart';
 
 class ReportDetails extends StatefulWidget {
   final ReportModel model;
@@ -19,6 +21,7 @@ class _ReportDetailsState extends State<ReportDetails> {
   void initState() {
     super.initState();
     model = widget.model;
+    print('.........${model!.lat}.......${model!.long}');
   }
 
   @override
@@ -90,7 +93,7 @@ class _ReportDetailsState extends State<ReportDetails> {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               height: 300,
-              child: const MapSnippet(),
+              child: UserViewMap(lat: double.parse(model!.lat ?? ""), long: double.parse(model!.long ?? ""),),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 20, left: 20),

@@ -1,3 +1,4 @@
+import 'package:aquafix/admin/admin_view_map.dart';
 import 'package:aquafix/models/report_model.dart';
 import 'package:flutter/material.dart';
 
@@ -20,6 +21,8 @@ class _ReportDetailsState extends State<AdminReportDetails> {
 
   @override
   Widget build(BuildContext context) {
+    var height = MediaQuery.of(context).size.height;
+    var width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -33,12 +36,15 @@ class _ReportDetailsState extends State<AdminReportDetails> {
           // crossAxisAlignment: CrossAxisAlignment.center,
           // mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 30,),
-              child: Image.network(model!.faultImage ?? ""),
+            Container(
+              // height: 400,
+              width: width,
+              height: height * 0.4,
+              padding: const EdgeInsets.only(top: 30, left: 10, right: 10),
+              child: Image.network(model!.faultImage ?? "" , fit: BoxFit.fitWidth),
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 30, left: 20),
+              padding: const EdgeInsets.only(top: 10, left: 20),
               child: Row(
                 children: [
                   const Text("Location: ", style:
@@ -78,6 +84,25 @@ class _ReportDetailsState extends State<AdminReportDetails> {
                   ),
                 ],
               ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 20, left: 20),
+              child: Row(
+                children: [
+                  const Text("location: ", style:
+                        TextStyle(fontSize: 18,  ),),
+                  Text(
+                    model!.location ?? "",
+                    style:
+                        const TextStyle(fontSize: 18,  ),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              height: 300,
+              child: AdminViewMap(lat: double.parse(model!.lat ?? ""), long: double.parse(model!.long ?? ""),),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 20, left: 20),

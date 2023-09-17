@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-class UserViewMap extends StatefulWidget {
+class AdminViewMap extends StatefulWidget {
   final double lat;
   final double long;
-  const UserViewMap({super.key, required this.lat, required this.long});
+  const AdminViewMap({super.key, required this.lat, required this.long});
 
   @override
-  State<UserViewMap> createState() => _UserViewMapState();
+  State<AdminViewMap> createState() => _AdminViewMap();
 }
 
-class _UserViewMapState extends State<UserViewMap> {
+class _AdminViewMap extends State<AdminViewMap> {
   @override
   Widget build(BuildContext context) {
     return GoogleMap(

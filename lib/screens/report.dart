@@ -2,9 +2,10 @@ import 'dart:io';
 
 import 'package:aquafix/database/database.dart';
 import 'package:aquafix/maps/map_snippet.dart';
-import 'package:aquafix/maps/user_add_map.dart'; 
+// import 'package:aquafix/maps/user_add_map.dart'; 
 import 'package:aquafix/widgets/loading_alert.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -223,7 +224,7 @@ class _ReportState extends State<Report> {
                 onPressed: () async {
                   final FormState? form = _formKey.currentState;
                   // print(".......${tapedpoint!.latitude.toString()}.....");
-                  if (form!.validate() & _pic.path.isEmpty) {
+                  if (form!.validate() & _pic.path.isEmpty & locationSelected) {
                     Map<String, dynamic> userReportMap = {
                       "Fault Type": widget.title,
                       "Name": _name.text.toString(),
@@ -231,8 +232,8 @@ class _ReportState extends State<Report> {
                       "Description": _details.text.toString(),
                       "Phone Number": _phoneNumber.text.toString(),
                       "Date": DateTime.now().toString(),
-                      "Lat" : tapedpoint.latitude.toString(),
-                      "Lng" : tapedpoint.longitude.toString(),
+                      "Lat" : lat,
+                      "Lng" : lng,
                     };
 
                     showDialog(
@@ -244,12 +245,12 @@ class _ReportState extends State<Report> {
                         });
 
                     await DataBaseMethods()
-                        .addUserReport(userReportMap, tapedpoint)
+                        .addUserReport(userReportMap,)
                         .then((value) {
                       Navigator.pop(context);
                       Navigator.pop(context);
                     });
-                  } else if (form.validate() & _pic.path.isNotEmpty) {
+                  } else if (form.validate() & _pic.path.isNotEmpty & locationSelected) {
                     Map<String, dynamic> userReportMap = {
                       "Fault Type": widget.title,
                       "Name": _name.text.toString(),
@@ -257,8 +258,8 @@ class _ReportState extends State<Report> {
                       "Description": _details.text.toString(),
                       "Phone Number": _phoneNumber.text.toString(),
                       "Date": DateTime.now().toString(),
-                      "Lat" : post!.altitude.toString(),
-                      "Lng" : post!.longitude.toString(),
+                      "Lat" : lat,
+                      "Lng" : lng,
                     };
 
                     showDialog(
@@ -270,13 +271,13 @@ class _ReportState extends State<Report> {
                         });
 
                     await DataBaseMethods()
-                        .addUserReportWithImage(userReportMap, _pic, tapedpoint)
+                        .addUserReportWithImage(userReportMap, _pic,)
                         .whenComplete(() {
                       Navigator.pop(context);
                       Navigator.pop(context);
                       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                 content: Text("Report Submitted"),
-                duration: Duration(milliseconds: 300),
+                duration: Duration(seconds: 5),
               ));
                     });
                   }

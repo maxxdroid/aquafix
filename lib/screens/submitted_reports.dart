@@ -36,7 +36,12 @@ class _SubmittedReportsState extends State<SubmittedReports> {
               stream:
                   FirebaseFirestore.instance.collection("users").doc(id).collection("reports").snapshots(),
               builder: (context, snapshot) {
-                return snapshot.hasData
+                if (snapshot.hasError){
+                  return const Center(
+                        child: Text("No Reports Yet"),
+                      );
+                } else {
+                  return snapshot.hasData
                     ? ListView.builder(
                         itemCount: snapshot.data?.docs.length,
                         itemBuilder: (content, index) {
@@ -47,6 +52,7 @@ class _SubmittedReportsState extends State<SubmittedReports> {
                     : const Center(
                         child: Text("No Reports Yet"),
                       );
+                }
               }
               ),
         )

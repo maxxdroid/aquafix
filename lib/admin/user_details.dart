@@ -1,7 +1,8 @@
 // import 'package:aquafix/admin/amin_user_reports.dart';
+import 'package:aquafix/admin/admin_report_details.dart';
 import 'package:aquafix/models/report_model.dart';
 import 'package:aquafix/models/users_model.dart';
-import 'package:aquafix/screens/report_details.dart';
+// import 'package:aquafix/screens/report_details.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -26,6 +27,8 @@ class _ReportDetailsState extends State<UserDetails> {
 
   @override
   Widget build(BuildContext context) {
+    var height = MediaQuery.of(context).size.height;
+    var width = MediaQuery.of(context).size.width;
     return Scaffold(
         appBar: AppBar(
           title: Text(
@@ -35,17 +38,21 @@ class _ReportDetailsState extends State<UserDetails> {
           ),
           centerTitle: true,
         ),
-        body: SingleChildScrollView(
+        body: 
+        SingleChildScrollView(
           child: Column(
             // crossAxisAlignment: CrossAxisAlignment.center,
             // mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Container(
-                height: 400,
+                height: height * 0.4,
+                width: width,
                 padding: const EdgeInsets.only(
                   top: 30,
+                  left: 10,
+                  right: 10
                 ),
-                child: Image.network(model!.userImage ?? "", fit: BoxFit.fitHeight,),
+                child: Image.network(model!.userImage ?? "", fit: BoxFit.fitWidth,),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 30, left: 20),
@@ -86,7 +93,7 @@ class _ReportDetailsState extends State<UserDetails> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 20, left: 20),
+                padding: const EdgeInsets.only(top: 20, left: 20, bottom: 10,),
                 child: Text(
                   "Reports from ${model!.userName}",
                   style: const TextStyle(
@@ -95,35 +102,41 @@ class _ReportDetailsState extends State<UserDetails> {
                   ),
                 ),
               ),
-              StreamBuilder(
-            stream:
-                FirebaseFirestore.instance.collection("users").doc(id).collection("reports").snapshots(),
-            builder: (context, snapshot) {
-              return snapshot.hasData
-                  ? ListView.builder(
-                      itemCount: snapshot.data?.docs.length,
-                      itemBuilder: (content, index) {
-                        ReportModel model = ReportModel.fromJson(
-                            snapshot.data!.docs[index].data());
-                        return reportCard(model, content);
-                      })
-                  : const Center(
-                      child: Text("No Reports Yet"),
-                    );
-            }
-            ),
-  
+              SizedBox(
+                height: 300,
+                child: usersReports()),
             ],
           ),
-        ));
+        )
+    );
+  }
+
+  StreamBuilder<QuerySnapshot<Map<String, dynamic>>> usersReports() {
+    return StreamBuilder(
+          stream:
+              FirebaseFirestore.instance.collection("users").doc(id).collection("reports").snapshots(),
+          builder: (context, snapshot) {
+            return snapshot.hasData
+                ? ListView.builder(
+                    itemCount: snapshot.data?.docs.length,
+                    itemBuilder: (content, index) {
+                      ReportModel model = ReportModel.fromJson(
+                          snapshot.data!.docs[index].data());
+                      return reportCard(model, content);
+                    })
+                : const Center(
+                    child: Text("No Reports Yet"),
+                  );
+          }
+          );
   }
 
   reportCard(ReportModel model, BuildContext context) {
     return InkWell(
       onTap: () {
-        // Route route =
-        //     MaterialPageRoute(builder: (c) => ReportDetails(model: model));
-        // Navigator.push(context, route);
+        Route route =
+            MaterialPageRoute(builder: (c) => AdminReportDetails(model: model));
+        Navigator.push(context, route);
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),

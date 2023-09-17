@@ -1,3 +1,4 @@
+import 'package:aquafix/admin/admin_report_details.dart';
 import 'package:aquafix/models/report_model.dart';
 // import 'package:aquafix/screen.dart';
 import 'package:aquafix/screens/report_details.dart';
@@ -30,6 +31,7 @@ class _SubmittedUserReportsState extends State<SubmittedUserReports> {
             builder: (context, snapshot) {
               return snapshot.hasData
                   ? ListView.builder(
+                    shrinkWrap: true,
                       itemCount: snapshot.data?.docs.length,
                       itemBuilder: (content, index) {
                         ReportModel model = ReportModel.fromJson(
@@ -48,8 +50,9 @@ class _SubmittedUserReportsState extends State<SubmittedUserReports> {
     return InkWell(
       onTap: () {
         // Route route =
-        //     MaterialPageRoute(builder: (c) => ReportDetails(model: model));
+        //     MaterialPageRoute(builder: (c) => AdminReportDetails(model: model));
         // Navigator.push(context, route);
+        // print("..........................object");
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),
