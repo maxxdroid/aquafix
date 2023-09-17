@@ -5,7 +5,6 @@ import 'package:aquafix/maps/map_snippet.dart';
 // import 'package:aquafix/maps/user_add_map.dart'; 
 import 'package:aquafix/widgets/loading_alert.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -249,6 +248,11 @@ class _ReportState extends State<Report> {
                         .then((value) {
                       Navigator.pop(context);
                       Navigator.pop(context);
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                content: Text("Report Submitted"),
+                duration: Duration(seconds: 3),
+              ));
+                      locationSelected = false;
                     });
                   } else if (form.validate() & _pic.path.isNotEmpty & locationSelected) {
                     Map<String, dynamic> userReportMap = {
@@ -275,9 +279,10 @@ class _ReportState extends State<Report> {
                         .whenComplete(() {
                       Navigator.pop(context);
                       Navigator.pop(context);
+                      locationSelected = false;
                       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                 content: Text("Report Submitted"),
-                duration: Duration(seconds: 5),
+                duration: Duration(seconds: 3),
               ));
                     });
                   }

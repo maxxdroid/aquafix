@@ -1,7 +1,5 @@
-import 'package:aquafix/admin/admin_report_details.dart';
 import 'package:aquafix/models/report_model.dart';
 // import 'package:aquafix/screen.dart';
-import 'package:aquafix/screens/report_details.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 

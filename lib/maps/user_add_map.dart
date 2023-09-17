@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 // import './map_snippet.dart';
 import '../screens/report.dart';
-import 'package:geolocator/geolocator.dart';
+// import 'package:geolocator/geolocator.dart';
 
 class UserAddMap extends StatefulWidget {
   const UserAddMap({super.key});
@@ -15,7 +15,7 @@ class _UserAddMapState extends State<UserAddMap> {
 
   static const double _defaultlang =  5.590425;
   static const double _defaultlong = -0.202665;
-  late final GoogleMapController _googleMapController;
+  // late final GoogleMapController _googleMapController;
   static const CameraPosition _defaultlocation = CameraPosition(target: LatLng(_defaultlang, _defaultlong), zoom: 20);
 
   List <Marker> myMarker = [];
@@ -25,7 +25,7 @@ class _UserAddMapState extends State<UserAddMap> {
     return Scaffold(
       body: GoogleMap(
         mapType: MapType.hybrid,
-            onMapCreated: (controller) => _googleMapController = controller,
+            // onMapCreated: (controller) => _googleMapController = controller,
             initialCameraPosition: _defaultlocation,
             onTap: _handletap,
             //  mapType: _currentMapType,
