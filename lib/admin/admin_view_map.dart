@@ -14,7 +14,7 @@ class _AdminViewMap extends State<AdminViewMap> {
   @override
   Widget build(BuildContext context) {
     return GoogleMap(
-      mapType: MapType.hybrid,
+      mapType: MapType.normal,mapToolbarEnabled: true,
         initialCameraPosition: CameraPosition(
           target: LatLng(widget.lat, widget.long),
           zoom: 15,

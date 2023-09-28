@@ -1,7 +1,7 @@
 import 'package:aquafix/screens/submitted_reports.dart';
-import 'package:aquafix/screens/user_home.dart';
+// import 'package:aquafix/screens/user_home.dart';
 import 'package:aquafix/screens/user_reports.dart';
-import 'package:aquafix/screens/user_settings.dart';
+// import 'package:aquafix/screens/user_settings.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -32,10 +32,10 @@ class _HomePageState extends State<HomePage> {
           controller: pageController,
           physics: const NeverScrollableScrollPhysics(),
           children: const [
-            UserHome(),
+            // UserHome(),
             UserReports(),
             SubmittedReports(),
-            UserSettings(),
+            // UserSettings(),
           ],
         ),
         bottomNavigationBar: BottomNavigationBar(
@@ -52,10 +52,11 @@ class _HomePageState extends State<HomePage> {
             pageController.jumpToPage(index);
           }),
           items: const [
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+            // BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
             BottomNavigationBarItem(icon: Icon(Icons.report_rounded), label: 'Report Issue'),
             BottomNavigationBarItem(icon: Icon(Icons.list_alt_outlined), label: 'Reports'),
-            BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'Settings'),
+            // BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'Settings'),
+            // BottomNavigationBarItem( icon: Icon(Icons.logout_outlined), label: 'Log Out')
           ],
         ),
       )

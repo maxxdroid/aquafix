@@ -1,8 +1,9 @@
+import 'package:aquafix/authentication/auth.dart';
 import 'package:aquafix/models/report_model.dart';
 import 'package:aquafix/screens/report_details.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import '../screen.dart';
+// import '../screen.dart';
 
 class SubmittedReports extends StatefulWidget {
   const SubmittedReports({super.key});
@@ -13,7 +14,7 @@ class SubmittedReports extends StatefulWidget {
 
 class _SubmittedReportsState extends State<SubmittedReports> {
 
-  String id = getId();
+  String id = AuthMethods().auth.currentUser!.uid;
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +41,7 @@ class _SubmittedReportsState extends State<SubmittedReports> {
                   return const Center(
                         child: Text("No Reports Yet"),
                       );
-                } else {
+                } 
                   return snapshot.hasData
                     ? ListView.builder(
                         itemCount: snapshot.data?.docs.length,
@@ -52,7 +53,7 @@ class _SubmittedReportsState extends State<SubmittedReports> {
                     : const Center(
                         child: Text("No Reports Yet"),
                       );
-                }
+                
               }
               ),
         )
