@@ -1,3 +1,4 @@
+import 'package:aquafix/functions/sharedpref.dart';
 import 'package:aquafix/screens/submitted_reports.dart';
 // import 'package:aquafix/screens/user_home.dart';
 import 'package:aquafix/screens/user_reports.dart';
@@ -11,6 +12,8 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
+late String newid;
+
 class _HomePageState extends State<HomePage> {
 
   int pageIndex = 0;
@@ -19,10 +22,20 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
+    onLaunch();
+    setState(() {});
     pageController = PageController(
       initialPage: pageIndex
     );
   }
+
+  
+
+  onLaunch () async {
+    newid = (await SharedPrefHelper().getUserID())!;
+  }
+
+  
 
   @override
   Widget build(BuildContext context) {

@@ -44,8 +44,7 @@ class _UserReportsState extends State<UserReports> {
                                   child: const Text("Yes", style: TextStyle(color: Colors.redAccent)),
                                   onPressed: () {
                                     AuthMethods().logOutUser();
-                                    Navigator.pushReplacementNamed(context, "login");
-                                    Navigator.pop(context);
+                                    Navigator.pushReplacementNamed(context, "screen");
                                   },
                                 ),
                                 SimpleDialogOption(

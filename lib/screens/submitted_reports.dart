@@ -1,5 +1,7 @@
 import 'package:aquafix/authentication/auth.dart';
+import 'package:aquafix/functions/sharedpref.dart';
 import 'package:aquafix/models/report_model.dart';
+import 'package:aquafix/screens/home.dart';
 import 'package:aquafix/screens/report_details.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +16,19 @@ class SubmittedReports extends StatefulWidget {
 
 class _SubmittedReportsState extends State<SubmittedReports> {
 
-  String id = AuthMethods().auth.currentUser!.uid;
+  String id = newid;
+
+  // onLaunch () async {
+  //   id = (await SharedPrefHelper().getUserID())!;
+  //   print(id);
+  //   // getAndSetMessages();
+  // }
+
+  @override
+  void initState() {
+    print(id);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,14 +49,9 @@ class _SubmittedReportsState extends State<SubmittedReports> {
           padding: const EdgeInsets.only(top: 20.0),
           child: StreamBuilder(
               stream:
-                  FirebaseFirestore.instance.collection("users").doc(id).collection("reports").snapshots(),
+                  FirebaseFirestore.instance.collection("Reports").where("User Id", isEqualTo: id).snapshots(),
               builder: (context, snapshot) {
-                if (snapshot.hasError){
-                  return const Center(
-                        child: Text("No Reports Yet"),
-                      );
-                } 
-                  return snapshot.hasData
+                return snapshot.hasData
                     ? ListView.builder(
                         itemCount: snapshot.data?.docs.length,
                         itemBuilder: (content, index) {
@@ -53,7 +62,6 @@ class _SubmittedReportsState extends State<SubmittedReports> {
                     : const Center(
                         child: Text("No Reports Yet"),
                       );
-                
               }
               ),
         )

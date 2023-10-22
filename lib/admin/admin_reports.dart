@@ -43,7 +43,8 @@ class _SubmittedReportsState extends State<AdminReports> {
                     : const Center(
                         child: Text("No Reports Yet"),
                       );
-              }),
+              }
+              ),
         ));
   }
 

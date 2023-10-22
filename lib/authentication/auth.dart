@@ -1,5 +1,5 @@
 import 'dart:io';
-
+import '../functions/sharedpref.dart';
 import 'package:aquafix/admin/admin_home.dart';
 import 'package:aquafix/database/database.dart';
 import 'package:aquafix/widgets/loading_alert.dart';
@@ -20,15 +20,17 @@ class AuthMethods {
             message: 'Logging in please wait...',
           );
         });
-    // late User? firebseUser;
+    late User? firebseUser;
     String email = "$meterNumber@gmail.com";
     await auth
         .signInWithEmailAndPassword(email: email, password: password)
         .then((authUser) {
-      // firebseUser = authUser.user;
+      firebseUser = authUser.user;
+
+      SharedPrefHelper().saveUserID(firebseUser!.uid);
       // readLogInData(firebseUser!);
       Navigator.of(context).popUntil((route) => route.isFirst);
-      Navigator.popAndPushNamed(context, "home");
+      Navigator.popAndPushNamed(context, "screen");
     }).onError((error, stackTrace) {
       Navigator.of(context);
       // logInErrorHandling(error.toString());
@@ -58,12 +60,8 @@ class AuthMethods {
         .then((authUser) {
       firebaseUser = authUser.user;
 
-      // String userName = email.replaceAll("@gmail.com", "");
-
-      // SharedPrefHelper().saveUserEmail(email);
-      // SharedPrefHelper().saveUserID(firebaseUser!.uid);
-      // SharedPrefHelper().saveUserDisplayName(name);
-      // SharedPrefHelper().saveUserName(userName);
+      SharedPrefHelper().saveUserID(firebaseUser!.uid);
+      
 
       Map<String, dynamic> userInfoMap = {
         "Email": mail,
@@ -75,9 +73,7 @@ class AuthMethods {
 
       DataBaseMethods()
           .addUserInfoToDob(firebaseUser!.uid, userInfoMap, meterImage, context);
-    }).onError((error, stackTrace) {
-      // signUpErrorHandling(error.toString());
-    });
+    }).onError((error, stackTrace) {});
   }
 
   loginAdmin(String id, String password, BuildContext context) async {

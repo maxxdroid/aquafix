@@ -24,7 +24,7 @@ class _UserAddMapState extends State<UserAddMap> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: GoogleMap(
-        mapType: MapType.hybrid,
+        mapType: MapType.normal,
             // onMapCreated: (controller) => _googleMapController = controller,
             initialCameraPosition: _defaultlocation,
             onTap: _handletap,

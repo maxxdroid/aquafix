@@ -44,6 +44,7 @@ dependencies:
   flutter_typeahead: ^4.7.0
   http: ^1.1.0
   get: ^4.6.5
+  connectivity_plus: ^4.0.2
   # flutter_google_places: ^0.13.6
   # flutter_google_places_web: ^1.0.2
 

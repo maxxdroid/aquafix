@@ -27,6 +27,7 @@ class MyApp extends StatelessWidget {
         "signup" : (context) => const CreateAccount(),
         // "meter_verification" : (context) => const MeterVerification(),
         "signIn" : (context) => const SignIn(),
+        "screen" :(context) => const Screen(),
       },
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),

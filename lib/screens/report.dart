@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:aquafix/database/database.dart';
 import 'package:aquafix/maps/map_snippet.dart';
+import 'package:aquafix/screen.dart';
 // import 'package:aquafix/maps/user_add_map.dart'; 
 import 'package:aquafix/widgets/loading_alert.dart';
 import 'package:flutter/material.dart';
@@ -55,6 +56,7 @@ class _ReportState extends State<Report> {
       imageSelected = true;
     });
   }
+  String id = getId();
 
   selectImage(ncontext) {
     return showDialog(
@@ -231,6 +233,7 @@ class _ReportState extends State<Report> {
                       "Description": _details.text.toString(),
                       "Phone Number": _phoneNumber.text.toString(),
                       "Date": DateTime.now().toString(),
+                      "User Id" : id,
                       "Lat" : lat,
                       "Lng" : lng,
                     };
@@ -261,6 +264,7 @@ class _ReportState extends State<Report> {
                       "location": _location.text.toString(),
                       "Description": _details.text.toString(),
                       "Phone Number": _phoneNumber.text.toString(),
+                      "User Id" : id,
                       "Date": DateTime.now().toString(),
                       "Lat" : lat,
                       "Lng" : lng,
@@ -275,7 +279,7 @@ class _ReportState extends State<Report> {
                         });
 
                     await DataBaseMethods()
-                        .addUserReportWithImage(userReportMap, _pic,)
+                        .addUserReportWithImage(userReportMap, _pic, )
                         .whenComplete(() {
                       Navigator.pop(context);
                       Navigator.pop(context);

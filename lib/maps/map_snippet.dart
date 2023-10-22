@@ -65,6 +65,7 @@ class _MapSnipetState extends State<MapSnippet> {
         children: [
           GoogleMap(
             mapType: MapType.normal,
+            mapToolbarEnabled: true,
             onMapCreated: (controller) => _googleMapController = controller,
             initialCameraPosition: _defaultlocation,
             // initialCameraPosition: CameraPosition(target: LatLng(widget.lat, widget.long)),

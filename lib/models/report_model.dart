@@ -8,6 +8,7 @@ class ReportModel {
   String? faultImage;
   String? lat;
   String? long;
+  String? userId;
 
   ReportModel({
     this.faultType,
@@ -15,6 +16,7 @@ class ReportModel {
     this.description,
     this.date,
     this.userName,
+    this.userId,
     this.userPhoneNumber,
     this.faultImage,
     this.lat,
@@ -27,6 +29,7 @@ class ReportModel {
     description = json["Description"];
     date = json["Date"];
     userName = json["Name"];
+    userId = json["User Id"];
     userPhoneNumber = json["Phone Number"];
     faultImage = json["Image Url"];
     lat = json["Lat"];
@@ -40,6 +43,7 @@ class ReportModel {
     data["Description"] = description;
     data["Date"] = date;
     data["Name"] = userName;
+    data["User Id"] = userId;
     data["Phone Number"] = userPhoneNumber;
     data["Fault Image"] = faultImage;
     data["Lat"] = lat;
